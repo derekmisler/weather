@@ -1,0 +1,30 @@
+{
+  "presets": ["next/babel"],
+  "plugins": [
+    [
+      "styled-components",
+      {
+        "ssr": true,
+        "minify": true,
+        "pure": true,
+        "displayName": true,
+        "fileName": true
+      }
+    ],
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "utils": "./utils",
+          "components": "./components",
+          "styles": "./styles",
+          "sections": "./sections",
+          "constants": "./constants",
+          "types": "./types"
+        }
+      }
+    ],
+    "@babel/plugin-proposal-optional-chaining"
+  ]
+}

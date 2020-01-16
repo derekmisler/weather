@@ -1,0 +1,15 @@
+{
+  "processors": [
+    "stylelint-processor-styled-components"
+  ],
+  "extends": [
+    "stylelint-config-recommended",
+    "stylelint-config-styled-components"
+  ],
+  "rules": {
+    "no-empty-source": null,
+    "color-hex-case": "lower",
+    "number-leading-zero": null,
+    "string-quotes": "single"
+  }
+}

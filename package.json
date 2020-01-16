@@ -1,19 +1,42 @@
 {
-  "name": "create-next-example-app",
-  "description": "A Next.js starter app.",
+  "name": "whatever-the-weather",
+  "description": "Whether the weather be fine,\nOr whether the weather be not,\nWhether the weather be cold,\nOr whether the weather be hot,\nWe'll weather the weather\nWhatever the weather,\nWhether we like it or not!",
   "repository": {
     "type": "git",
     "url": "https://github.com/zeit/now/tree/master/examples/nextjs"
   },
   "license": "MIT",
   "scripts": {
-    "dev": "next",
-    "build": "next build",
-    "start": "next start"
+    "dev": "npx next",
+    "build": "npx next build",
+    "static": "npm run build && npx next export",
+    "start": "npx next start",
+    "stylelint": "npx stylelint './**/*.tsx'",
+    "format": "npx prettier --write '**/*.{ts,tsx}'",
+    "deploy": "npm run build && npx now",
+    "deploy:prod": "npm run build && npx now --prod",
+    "clean:all": "rm -rf out && rm -rf node_modules && rm -rf package-lock.json && npm cache clean --force && npm i --no-audit"
   },
   "dependencies": {
     "next": "^9.1.6",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "styled-components": "^4.4.1"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-optional-chaining": "^7.7.5",
+    "@types/node": "^12.12.17",
+    "@types/react": "^16.8.23",
+    "@types/react-dom": "^16.9.4",
+    "@types/styled-components": "^4.4.1",
+    "babel-plugin-module-resolver": "^3.2.0",
+    "babel-plugin-styled-components": "^1.10.0",
+    "now": "^16.7.0",
+    "prettier": "^1.18.2",
+    "stylelint": "^11.1.1",
+    "stylelint-config-recommended": "^3.0.0",
+    "stylelint-config-styled-components": "^0.1.1",
+    "stylelint-processor-styled-components": "^1.8.0",
+    "typescript": "^3.7.3"
   }
 }
