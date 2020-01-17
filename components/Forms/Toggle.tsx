@@ -1,12 +1,10 @@
 import { useState, useEffect, HTMLProps, FC } from 'react'
 import styled from 'styled-components'
-import { Small } from 'components/Typography'
+import { Text } from 'components/Typography'
 import { DEFAULT_TEXT_STYLES, LAYOUT_DEFAULTS, transitionDefaults } from 'styles'
 
 const {
   borderSize,
-  borderSizeSmall,
-  borderSizeLarge,
   borderStyle,
   borderRadius,
   spacing
@@ -42,7 +40,7 @@ const ToggleWrapper = styled.button`
 
 const ToggleSlider = styled.div<{ isActive?: boolean }>`
   height: ${borderSize};
-  width: ${borderSizeLarge};
+  width: ${borderSize};
   border-radius: ${borderRadius};
   padding: 0;
   margin: 0 ${spacing.small};
@@ -51,17 +49,17 @@ const ToggleSlider = styled.div<{ isActive?: boolean }>`
   outline: none;
   background-color: transparent;
   overflow: hidden;
-  border: ${({ theme }) => `${borderSizeSmall} ${borderStyle} ${theme.link}`};
+  border: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
 
   &::before {
     content: '';
     position: absolute;
     height: ${borderSize};
-    width: calc(${borderSize} + ${borderSizeSmall});
+    width: calc(${borderSize} + ${borderSize});
     border-radius: ${borderRadius};
     background-color: ${({ theme }) => theme.link};
     transition: ${timing} left ${duration};
-    left: ${({ isActive }) => isActive ? `calc(100% - (${borderSize} + ${borderSizeSmall}))` : 0 };
+    left: ${({ isActive }) => isActive ? `calc(100% - (${borderSize} + ${borderSize}))` : 0 };
     will-change: left;
     top: 0;
   }
@@ -82,9 +80,9 @@ export const Toggle: FC<ToggleProps> = ({
   }, [active])
   return (
     <ToggleWrapper onClick={handleChange} >
-      {offLabel && <Small>{offLabel}</Small>}
+      {offLabel && <Text>{offLabel}</Text>}
       <ToggleSlider isActive={active} />
-      {onLabel && <Small>{onLabel}</Small>}
+      {onLabel && <Text>{onLabel}</Text>}
     </ToggleWrapper>
   )
 }

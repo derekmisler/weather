@@ -38,8 +38,8 @@ export const BASE_MEASURE = 16
 const HEADING_SIZES = new Array(6)
 
 export const TYPOGRAPHY_DEFAULTS: TypographyTypes = {
-  baseFontFamily: 'neue-haas-grotesk-text, sans-serif;',
-  headingFontFamily: 'neue-haas-grotesk-display, sans-serif;',
+  baseFontFamily: '\'Lato\', sans-serif;',
+  headingFontFamily: '\'Playfair Display\', serif;',
   htmlFontSize: `${BASE_MEASURE}px`,
   baseFontSize: {
     desktop: '2rem',
@@ -60,7 +60,7 @@ export const TYPOGRAPHY_DEFAULTS: TypographyTypes = {
     mobile: ['6rem', '3.75rem', '3rem', '2.125rem', '1.5rem', '1rem'],
     desktop: ['9.75rem', '7.5rem', '5rem', '3rem', '2rem', '1.5rem']
   },
-  headingLineHeights: [.75, .85, .8, .8, .8, .8],
+  headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],
   headingLetterSpacing: ['-0.01562em', '-0.00833em', '0em', '0.00735em', '0em', '0.0075em'],
   headingFontWeights: HEADING_SIZES.fill('600'),
   minColWidth: `${BASE_MEASURE}ch`

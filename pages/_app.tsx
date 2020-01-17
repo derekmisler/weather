@@ -44,7 +44,7 @@ class MainApp extends App {
           <meta name='msapplication-TileColor' content='#da532c' />
           <meta name='theme-color' content='#ffffff' />
           <link rel='shortcut icon' href='favicon.ico' />
-          <link rel='stylesheet' href='https://use.typekit.net/jzw6tzs.css' />
+          <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display:700,700i&display=swap" rel="stylesheet" />
         </Head>
         <Component {...pageProps} />
       </>
