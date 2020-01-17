@@ -10,8 +10,7 @@
       "utils/*": ["utils/*"],
       "constants/*": ["constants/*"],
       "styles/*": ["styles/*"],
-      "sections/*": ["sections/*"],
-      "types/*": ["types/*"]
+      "sections/*": ["sections/*"]
     },
     "moduleResolution": "node",
     "allowJs": true,
@@ -30,6 +29,5 @@
     "isolatedModules": true
   },
   "exclude": ["node_modules"],
-  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"],
-  "types": ["react-ga"]
+  "include": ["**/*.d.ts", "**/*.ts", "**/*.tsx"]
 }

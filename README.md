@@ -4,4 +4,4 @@
 
 # Whatever the Weather
 
-## [Demo](https://whatever-the-weather.derekmisler.now.sh/)
+## [Demo](https://whatever-the-weather.now.sh/)

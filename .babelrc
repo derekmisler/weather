@@ -24,7 +24,6 @@
           "types": "./types"
         }
       }
-    ],
-    "@babel/plugin-proposal-optional-chaining"
+    ]
   ]
 }
