@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import { Animated } from 'components/Animated'
-import { Heading, Text } from 'components/Typography'
+import { Heading, Text, Span } from 'components/Typography'
 import { Row, Col } from 'components/Grid'
 
 export const Header = memo(() => {
@@ -8,7 +8,7 @@ export const Header = memo(() => {
     <Row as='header' columnsDesktop={6}>
       <Col row>
         <Animated delay={100}>
-          <Heading level={1}>h1</Heading>
+          <Heading level={1}>h1 h1 h1 h1 h1 <Span italic>h1 h1</Span> h1 h1 h1 h1</Heading>
         </Animated>
         <Animated delay={200}>
           <Heading level={2}>h2</Heading>

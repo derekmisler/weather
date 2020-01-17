@@ -1,16 +1,15 @@
 import { useState, useEffect, HTMLProps, FC } from 'react'
 import styled from 'styled-components'
 import { Text } from 'components/Typography'
-import { DEFAULT_TEXT_STYLES, LAYOUT_DEFAULTS, transitionDefaults } from 'styles'
+import { DEFAULT_TEXT_STYLES, LAYOUT } from 'styles'
 
 const {
   borderSize,
   borderStyle,
   borderRadius,
-  spacing
-} = LAYOUT_DEFAULTS
-
-const { timing, duration } = transitionDefaults
+  spacing,
+  transitionDefaults: { timing, duration }
+} = LAYOUT
 
 interface ToggleProps extends HTMLProps<HTMLInputElement> {
   onLabel?: string

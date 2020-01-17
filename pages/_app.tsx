@@ -1,11 +1,29 @@
 import React from 'react'
-import App from 'next/app'
+import App, { AppContext } from 'next/app'
 import Head from 'next/head'
+import withRedux from 'next-redux-wrapper'
+import { Store } from 'redux'
+import { Provider } from 'react-redux'
+import { PersistGate } from 'redux-persist/integration/react'
 import { meta } from 'constants/meta'
+import { configureStore, persistor } from 'utils/configureStore'
 
-class MainApp extends App {
+interface AppProps {
+  store: Store
+}
+
+class MainApp extends App<AppProps> {
+  static async getInitialProps({ Component, ctx }: AppContext) {
+    return {
+      pageProps: {
+        ...(Component.getInitialProps
+          ? await Component.getInitialProps(ctx)
+          : {})
+      }
+    }
+  }
   render() {
-    const { Component, pageProps } = this.props
+    const { Component, pageProps, store } = this.props
     return (
       <>
         <Head>
@@ -44,12 +62,16 @@ class MainApp extends App {
           <meta name='msapplication-TileColor' content='#da532c' />
           <meta name='theme-color' content='#ffffff' />
           <link rel='shortcut icon' href='favicon.ico' />
-          <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display:700,700i&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600,600i&display=swap" rel="stylesheet" />
         </Head>
-        <Component {...pageProps} />
+        <Provider store={store}>
+          <PersistGate persistor={persistor} loading={null}>
+            <Component {...pageProps} />
+          </PersistGate>
+        </Provider>
       </>
     )
   }
 }
+export default withRedux(configureStore)(MainApp)
 
-export default MainApp

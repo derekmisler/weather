@@ -1,43 +1,10 @@
-import { HTMLProps } from 'react'
 import { css } from 'styled-components'
-import { DesktopMobile, LAYOUT_DEFAULTS } from './layout'
+import { LAYOUT } from './layout'
 
-type FontStyle = 'italic' | 'normal'
-type BaseFontWeight = '400' | '500' | '700'
-type HeadingFontWeight = '100' | '200' | '300' | '400' | '500' | '600' | '700' | '900'
-
-export interface TextProps extends HTMLProps<HTMLParagraphElement> {
-  bold?: boolean
-  inline?: boolean
-}
-
-interface TypographyTypes {
-  baseFontFamily: string
-  headingFontFamily: string
-  htmlFontSize: string
-  baseFontSize: DesktopMobile
-  smallFontSize: string
-  buttonFontSize: DesktopMobile
-  baseLetterSpacing: string
-  headingFontSizes: {
-    mobile: [string, string, string, string, string, string],
-    desktop: [string, string, string, string, string, string]
-  }
-  headingLineHeights: number[]
-  headingLetterSpacing: [string, string, string, string, string, string]
-  headingFontWeights: HeadingFontWeight[]
-  baseLineHeight: number
-  baseFontWeight: BaseFontWeight
-  boldFontWeight: BaseFontWeight
-  baseFontStyle: FontStyle
-  accentFontStyle: FontStyle
-  minColWidth: string
-}
-
-export const BASE_MEASURE = 16
+const BASE_MEASURE = 16
 const HEADING_SIZES = new Array(6)
 
-export const TYPOGRAPHY_DEFAULTS: TypographyTypes = {
+export const TYPOGRAPHY = {
   baseFontFamily: '\'Lato\', sans-serif;',
   headingFontFamily: '\'Playfair Display\', serif;',
   htmlFontSize: `${BASE_MEASURE}px`,
@@ -50,32 +17,25 @@ export const TYPOGRAPHY_DEFAULTS: TypographyTypes = {
     desktop: '1.35rem',
     mobile: '1rem'
   },
-  baseLetterSpacing: '0.00938em',
   baseLineHeight: 1.5,
-  baseFontWeight: '500',
-  boldFontWeight: '500',
-  baseFontStyle: 'normal',
-  accentFontStyle: 'normal',
+  baseFontWeight: '400',
+  boldFontWeight: '900',
   headingFontSizes: {
     mobile: ['6rem', '3.75rem', '3rem', '2.125rem', '1.5rem', '1rem'],
     desktop: ['9.75rem', '7.5rem', '5rem', '3rem', '2rem', '1.5rem']
   },
   headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],
-  headingLetterSpacing: ['-0.01562em', '-0.00833em', '0em', '0.00735em', '0em', '0.0075em'],
-  headingFontWeights: HEADING_SIZES.fill('600'),
-  minColWidth: `${BASE_MEASURE}ch`
+  headingFontWeights: HEADING_SIZES.fill('600')
 }
 
 export const DEFAULT_TEXT_STYLES = css`
   font: unset;
-  font-family: ${TYPOGRAPHY_DEFAULTS.baseFontFamily};
-  font-size: ${TYPOGRAPHY_DEFAULTS.baseFontSize.mobile};
-  font-style: ${TYPOGRAPHY_DEFAULTS.baseFontStyle};
-  line-height: ${TYPOGRAPHY_DEFAULTS.baseLineHeight};
-  font-weight: ${TYPOGRAPHY_DEFAULTS.baseFontWeight};
-  letter-spacing: ${TYPOGRAPHY_DEFAULTS.baseLetterSpacing};
+  font-family: ${TYPOGRAPHY.baseFontFamily};
+  font-size: ${TYPOGRAPHY.baseFontSize.mobile};
+  line-height: ${TYPOGRAPHY.baseLineHeight};
+  font-weight: ${TYPOGRAPHY.baseFontWeight};
   text-align: left;
-  @media ${LAYOUT_DEFAULTS.mediaQueries.desktop} {
-    font-size: ${TYPOGRAPHY_DEFAULTS.baseFontSize.desktop};
+  @media ${LAYOUT.mediaQueries.desktop} {
+    font-size: ${TYPOGRAPHY.baseFontSize.desktop};
   }
 `

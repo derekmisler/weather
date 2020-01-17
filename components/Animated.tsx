@@ -1,8 +1,8 @@
 import React, { useState, useEffect, SFC, memo } from 'react'
 import styled, { css } from 'styled-components'
-import { StyledComponentProps, LAYOUT_DEFAULTS } from 'styles'
+import { StyledComponentProps, LAYOUT } from 'styles'
 
-const { transition } = LAYOUT_DEFAULTS
+const { transition } = LAYOUT
 
 interface StyledAnimatedProps extends StyledComponentProps {
   animated?: boolean
@@ -33,11 +33,7 @@ export const Animated: SFC<AnimatedProps> = memo(
       setTimeout(() => {
         setAnimated(active)
       }, delay)
-      return () => {
-        setTimeout(() => {
-          setAnimated(false)
-        })
-      }
+      return () => setAnimated(false)
     }, [active])
 
     return <StyledAnimated {...rest} animated={animated} />

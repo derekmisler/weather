@@ -1,16 +1,14 @@
 import styled from 'styled-components'
-import { StyledComponentProps, TYPOGRAPHY_DEFAULTS, LAYOUT_DEFAULTS } from 'styles'
+import { StyledComponentProps, TYPOGRAPHY, LAYOUT } from 'styles'
 
 const {
   headingFontFamily,
   headingFontSizes,
   headingLineHeights,
   headingFontWeights,
-  headingLetterSpacing,
-  baseFontStyle
-} = TYPOGRAPHY_DEFAULTS
+} = TYPOGRAPHY
 
-const { mediaQueries } = LAYOUT_DEFAULTS
+const { mediaQueries } = LAYOUT
 
 export interface StyledHeadingProps extends StyledComponentProps {
   textAlign?: string
@@ -18,20 +16,17 @@ export interface StyledHeadingProps extends StyledComponentProps {
 }
 
 export const Heading = styled.div.attrs<StyledHeadingProps>(
-  ({ level, as }) => ({
-    role: as ? '' : 'heading',
+  ({ level }) => ({
+    role: 'heading',
     'aria-level': level,
     as: `h${level}`
   })
 ) <StyledHeadingProps>`
-  text-align: ${({ textAlign = 'left' }) => textAlign};
   font-family: ${headingFontFamily};
-  font-style: ${baseFontStyle};
+  text-align: ${({ textAlign = 'left' }) => textAlign};
   font-weight: ${({ level }) => headingFontWeights[level - 1]};
   line-height: ${({ level }) => headingLineHeights[level - 1]};
   font-size: ${({ level }) => headingFontSizes.mobile[level - 1]};
-  letter-spacing: ${({ level }) => headingLetterSpacing[level - 1]};
-  column-span: all;
 
   @media ${mediaQueries.desktop} {
     font-size: ${({ level }) => headingFontSizes.desktop[level - 1]};

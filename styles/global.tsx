@@ -1,12 +1,16 @@
 import { createGlobalStyle } from 'styled-components'
-import { TYPOGRAPHY_DEFAULTS } from './typography'
+import { TYPOGRAPHY } from './typography'
+import { LAYOUT } from './layout'
 
 const {
   baseFontWeight,
   baseLineHeight,
   baseFontFamily,
   htmlFontSize
-} = TYPOGRAPHY_DEFAULTS
+} = TYPOGRAPHY
+const {
+  transitionDefaults: { timing, durationSlow }
+} = LAYOUT
 
 interface GlobalStyleProps {
   theme: {
@@ -36,6 +40,7 @@ export const GlobalStyle = createGlobalStyle<GlobalStyleProps>`
   }
   html { font-size: ${htmlFontSize}; }
   body {
+    transition: ${timing} background-color ${durationSlow};
     background-color: ${({ theme }) => theme.background};
     font-family: ${baseFontFamily};
     font-weight: ${baseFontWeight};

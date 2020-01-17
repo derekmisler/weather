@@ -1,9 +1,9 @@
 import { memo, SFC } from 'react'
 import styled from 'styled-components'
-import { StyledComponentProps, SmMdLgSizes, LAYOUT_DEFAULTS, FlexAlignment } from 'styles'
+import { StyledComponentProps, SmMdLgSizes, LAYOUT, FlexAlignment } from 'styles'
 import { generateResponsiveRow } from 'utils/generateResponsiveGrid'
 
-const { spacing, mediaQueries } = LAYOUT_DEFAULTS
+const { spacing, mediaQueries } = LAYOUT
 
 interface RowProps extends StyledComponentProps {
   columns?: number
