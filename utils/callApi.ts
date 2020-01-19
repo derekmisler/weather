@@ -1,3 +1,4 @@
+import axios, { AxiosRequestConfig } from 'axios'
 import queryString from 'query-string'
 
 export const NOAA_ENDPOINTS = {
@@ -20,17 +21,18 @@ interface RequestDataTypes {
 }
 
 const createRequestObj = (requestData: RequestDataTypes) => {
-  const { method = 'GET', endpoint, body = {} } = requestData
+  const { method = 'get', endpoint, body = {} } = requestData
+  const url = createFullUrl(requestData)
   const isGoogle = Object.values(GOOGLE_ENDPOINTS).includes(endpoint)
-  const requestObject: RequestInit = {
-    method: method || 'GET',
+  const requestObject: AxiosRequestConfig = {
+    url,
+    method: method || 'get',
     headers: new Headers({
       'Content-Type': isGoogle ? 'application/json' : 'application/ld+json'
     }),
-    mode: 'no-cors',
-    cache: 'default',
-    body: method !== 'GET' ? JSON.stringify(body) : undefined
   }
+  if (method !== 'get') requestObject.data = JSON.stringify(body)
+  else delete requestObject.data
   return requestObject
 }
 
@@ -45,7 +47,7 @@ export const createFullUrl = (requestData: RequestDataTypes) => {
   }
 
   const API_BASE = isGoogle
-    ? 'https://maps.googleapis.com/maps/api'
+    ? 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api'
     : 'https://api.weather.gov'
 
   let fullUrl = `${API_BASE}/${endpoint}`
@@ -55,15 +57,10 @@ export const createFullUrl = (requestData: RequestDataTypes) => {
 }
 
 export const callApi = async (requestData: RequestDataTypes) => {
-  const url = createFullUrl(requestData)
   const request = createRequestObj(requestData)
-  console.log({ url, request })
   try {
-    const response = await fetch(url, request)
-    console.log('--------------------')
-    console.log('callApi', response)
-    console.log('--------------------')
-    return await response.json()
+    const { data } = await axios(request)
+    return data
   } catch (error) {
     return Promise.reject(error)
   }
