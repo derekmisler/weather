@@ -6,9 +6,9 @@ export const NOAA_ENDPOINTS = {
 export const GOOGLE_ENDPOINTS = {
   places: 'place/findplacefromtext/json',
 }
-
+console.log('process.env', process.env)
 const KEYS = {
-  google: 'AIzaSyDVF_T3lI7IOd2-SUC2gKSfgbzX-iLkIxw'
+  google: process.env.PLACES_API_KEY
 }
 
 interface RequestDataTypes {
