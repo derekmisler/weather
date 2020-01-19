@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { meta } from 'constants/meta'
 import { configureStore } from 'utils/configureStore'
 import { GlobalStyle } from 'styles'
-import { Heading, Span } from 'components/Typography'
+import { Heading, Span } from 'components/atoms/Typography'
 
 interface AppProps {
   store: Store

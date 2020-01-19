@@ -1,6 +1,6 @@
 import { memo } from 'react'
 import styled from 'styled-components'
-import { Text } from 'components/Typography'
+import { Text } from 'components/atoms/Typography'
 
 const StyledFooter = styled.footer``
 

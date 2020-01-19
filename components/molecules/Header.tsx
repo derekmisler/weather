@@ -1,6 +1,6 @@
 import { memo } from 'react'
-import { Animated } from 'components/Animated'
-import { Heading, Span } from 'components/Typography'
+import { Animated } from 'components/molecules/Animated'
+import { Heading, Span } from 'components/atoms/Typography'
 
 export const Header = memo(() => {
   return (

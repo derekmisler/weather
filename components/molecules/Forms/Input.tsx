@@ -1,6 +1,6 @@
 import { RefObject, FormEvent, FC, useEffect, useRef, memo } from 'react'
 import styled from 'styled-components'
-import { Text, Span } from 'components/Typography'
+import { Text, Span } from 'components/atoms/Typography'
 import { LAYOUT, DEFAULT_TEXT_STYLES, red, green } from 'styles'
 
 const {

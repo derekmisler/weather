@@ -16,6 +16,7 @@ const KEYS = {
 interface RequestDataTypes {
   method?: 'GET' | 'PUT' | 'POST'
   body?: any
+  url?: string
   group?: string
   endpoint: string
   params?: { [key: string]: string | number }
@@ -38,7 +39,9 @@ const createRequestObj = (requestData: RequestDataTypes) => {
 }
 
 export const createFullUrl = (requestData: RequestDataTypes) => {
-  const { endpoint, group, params = {} } = requestData
+  const { url, endpoint, group, params = {} } = requestData
+  if (url) return url
+
   const isGoogle = Object.values(GOOGLE_ENDPOINTS).includes(endpoint)
 
   if (isGoogle) params.key = KEYS.google

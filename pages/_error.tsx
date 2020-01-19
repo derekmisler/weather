@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage, NextPageContext } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { Heading } from 'components/Typography'
+import { Heading } from 'components/atoms/Typography'
 import { GlobalStyle } from 'styles'
 import { useTheme } from 'utils/useTheme'
 
