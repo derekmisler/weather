@@ -1,33 +1,22 @@
 import { applyMiddleware, createStore } from 'redux'
 import thunkMiddleware from 'redux-thunk'
-import { persistStore } from 'redux-persist'
+import { CookieStorage } from 'redux-persist-cookie-storage'
+import Cookies from 'js-cookie'
+import { persistStore, persistReducer } from 'redux-persist'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { appMiddleware } from './middleware'
 import { rootReducer } from './reducers'
 
-export const configureStore = (preloadedState = {}) => {
-  let store
-  const middlewares = [thunkMiddleware, ...appMiddleware]
-  const composedMiddleware = composeWithDevTools({ trace: true, traceLimit: 30 })(applyMiddleware(...middlewares))
-  const isClient = typeof window !== 'undefined'
+const middlewares = [thunkMiddleware, ...appMiddleware]
+const composedMiddleware = composeWithDevTools({ trace: true, traceLimit: 30 })(applyMiddleware(...middlewares))
 
-  if (isClient) {
-    const { persistReducer } = require('redux-persist')
-    const storage = require('redux-persist/lib/storage').default
-    const persistConfig = {
-      key: 'store',
-      storage
-    }
-    store = createStore(
-      persistReducer(persistConfig, rootReducer),
-      preloadedState,
-      composedMiddleware
-    )
-  } else {
-    store = createStore(rootReducer, preloadedState, composedMiddleware)
+export const configureStore = () => {
+  const persistConfig = {
+    key: 'root',
+    storage: new CookieStorage(Cookies)
   }
+  const persistedReducer = persistReducer(persistConfig, rootReducer)
+  const store: any = createStore(persistedReducer, undefined, composedMiddleware)
+  store.__persistor = persistStore(store)
   return store
 }
-
-export const store = configureStore()
-export const persistor = persistStore(store)

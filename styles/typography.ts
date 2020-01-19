@@ -25,8 +25,8 @@ export const TYPOGRAPHY = {
   headingLetterSpacing: [
     '-.55rem',
     '-.75rem',
-    '-.75rem',
-    '-.75rem',
+    '0',
+    '0',
     '0',
     '0'
   ],

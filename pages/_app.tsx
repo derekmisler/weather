@@ -1,12 +1,15 @@
 import React from 'react'
 import App, { AppContext } from 'next/app'
 import Head from 'next/head'
+import { ThemeProvider } from 'styled-components'
 import withRedux from 'next-redux-wrapper'
 import { Store } from 'redux'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { meta } from 'constants/meta'
-import { configureStore, persistor } from 'utils/configureStore'
+import { configureStore } from 'utils/configureStore'
+import { GlobalStyle } from 'styles'
+import { Heading, Span } from 'components/Typography'
 
 interface AppProps {
   store: Store
@@ -68,7 +71,7 @@ class MainApp extends App<AppProps> {
           />
         </Head>
         <Provider store={store}>
-          <PersistGate persistor={persistor} loading={null}>
+          <PersistGate persistor={(store as any).__persistor} loading={<Heading level={3}><Span italic>Loading...</Span></Heading>}>
             <Component {...pageProps} />
           </PersistGate>
         </Provider>

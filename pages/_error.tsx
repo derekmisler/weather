@@ -15,7 +15,7 @@ const Error: NextPage<ErrorProps> = ({ statusCode }) => {
 
   return (
     <ThemeProvider theme={theme}>
-      <GlobalStyle />
+      <GlobalStyle theme={theme} />
       {statusCode ? (
         <Heading level={1}>{statusCode}</Heading>
       ) : (
