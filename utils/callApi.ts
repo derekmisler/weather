@@ -1,10 +1,10 @@
 import queryString from 'query-string'
 
 export const NOAA_ENDPOINTS = {
-  points: 'points',
+  points: 'points'
 }
 export const GOOGLE_ENDPOINTS = {
-  places: 'place/findplacefromtext/json',
+  places: 'place/findplacefromtext/json'
 }
 console.log('process.env', process.env)
 const KEYS = {
@@ -12,10 +12,10 @@ const KEYS = {
 }
 
 interface RequestDataTypes {
-  method?: 'GET' | 'PUT' | 'POST',
-  body?: any,
-  group?: string,
-  endpoint: string,
+  method?: 'GET' | 'PUT' | 'POST'
+  body?: any
+  group?: string
+  endpoint: string
   params?: { [key: string]: string | number }
 }
 

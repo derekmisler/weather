@@ -1,7 +1,7 @@
 {
   "build": {
     "env": {
-      "PLACES_API_KEY": "@places-api-key"
+      "PLACES_API_KEY": "@places_api_key"
     }
   }
 }

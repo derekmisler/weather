@@ -16,7 +16,9 @@ const StyledCol = styled.div<ColProps>`
   text-align: ${({ textAlign }) => (textAlign ? textAlign : 'left')};
   ${({ range = '', rangeDesktop = '', row = false }) => {
     if (row) {
-      return css`${generateResponsiveCols('1..')}`
+      return css`
+        ${generateResponsiveCols('1..')}
+      `
     }
     if (!(range || rangeDesktop)) return null
     return css`

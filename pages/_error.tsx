@@ -16,10 +16,11 @@ const Error: NextPage<ErrorProps> = ({ statusCode }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      {statusCode
-        ? <Heading level={1}>{statusCode}</Heading>
-        : <Heading level={1}>This page doesn't exist!</Heading>
-      }
+      {statusCode ? (
+        <Heading level={1}>{statusCode}</Heading>
+      ) : (
+        <Heading level={1}>This page doesn't exist!</Heading>
+      )}
     </ThemeProvider>
   )
 }

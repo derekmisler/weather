@@ -16,13 +16,11 @@ export interface StyledHeadingProps extends StyledComponentProps {
   level: 1 | 2 | 3 | 4 | 5 | 6
 }
 
-export const Heading = styled.div.attrs<StyledHeadingProps>(
-  ({ level }) => ({
-    role: 'heading',
-    'aria-level': level,
-    as: `h${level}`
-  })
-) <StyledHeadingProps>`
+export const Heading = styled.div.attrs<StyledHeadingProps>(({ level }) => ({
+  role: 'heading',
+  'aria-level': level,
+  as: `h${level}`
+}))<StyledHeadingProps>`
   font-family: ${headingFontFamily};
   text-align: ${({ textAlign = 'left' }) => textAlign};
   font-weight: ${({ level }) => headingFontWeights[level - 1]};

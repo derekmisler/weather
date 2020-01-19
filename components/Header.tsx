@@ -6,7 +6,9 @@ export const Header = memo(() => {
   return (
     <header>
       <Animated delay={100}>
-        <Heading level={1}><Span italic>Whatever the Weather</Span></Heading>
+        <Heading level={1}>
+          <Span italic>Whatever the Weather</Span>
+        </Heading>
       </Animated>
     </header>
   )

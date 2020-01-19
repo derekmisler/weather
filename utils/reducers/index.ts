@@ -4,4 +4,3 @@ import { placesReducer } from './places'
 export const rootReducer = combineReducers({
   places: placesReducer
 })
-

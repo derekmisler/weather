@@ -4,15 +4,14 @@ import { GOOGLE_ENDPOINTS } from 'utils/callApi'
 export const PLACES_ACTION_TYPES = keymirror({
   PLACES_REQUEST: '',
   PLACES_SUCCESS: '',
-  PLACES_ERROR: '',
+  PLACES_ERROR: ''
 })
 
 export const getPlaces = (text: string) => {
   console.log('--------------------')
   console.log('text', text)
   console.log('--------------------')
-  return (
-  {
+  return {
     payload: {
       callApi: true,
       requestData: {
@@ -22,5 +21,4 @@ export const getPlaces = (text: string) => {
       actionTypes: Object.keys(PLACES_ACTION_TYPES)
     }
   }
-)
 }

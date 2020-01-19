@@ -8,7 +8,9 @@ import { rootReducer } from './reducers'
 export const configureStore = (preloadedState = {}) => {
   let store
   const middlewares = [thunkMiddleware, ...appMiddleware]
-  const composedMiddleware = composeWithDevTools(applyMiddleware(...middlewares))
+  const composedMiddleware = composeWithDevTools(
+    applyMiddleware(...middlewares)
+  )
   const isClient = typeof window !== 'undefined'
 
   if (isClient) {
@@ -24,11 +26,7 @@ export const configureStore = (preloadedState = {}) => {
       composedMiddleware
     )
   } else {
-    store = createStore(
-      rootReducer,
-      preloadedState,
-      composedMiddleware
-    )
+    store = createStore(rootReducer, preloadedState, composedMiddleware)
   }
   return store
 }

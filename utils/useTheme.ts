@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { themes } from 'styles'
 
-export type ThemeActionTypes = 'dayClear' | 'dayCloudy' | 'nightClear' | 'nightCloudy'
+export type ThemeActionTypes =
+  | 'dayClear'
+  | 'dayCloudy'
+  | 'nightClear'
+  | 'nightCloudy'
 
 type UseThemeProps = [{ [colorName: string]: string }, Function]
 

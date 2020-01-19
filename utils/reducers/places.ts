@@ -9,11 +9,7 @@ const defaultState = {
   fetching: false
 } as PlacesState
 
-const {
-  PLACES_REQUEST,
-  PLACES_SUCCESS,
-  PLACES_ERROR
-} = PLACES_ACTION_TYPES
+const { PLACES_REQUEST, PLACES_SUCCESS, PLACES_ERROR } = PLACES_ACTION_TYPES
 
 export const placesReducer = (state = defaultState, action) => {
   if (!action) return state

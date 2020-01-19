@@ -1,6 +1,11 @@
 import { memo, SFC } from 'react'
 import styled from 'styled-components'
-import { StyledComponentProps, SmMdLgSizes, LAYOUT, FlexAlignment } from 'styles'
+import {
+  StyledComponentProps,
+  SmMdLgSizes,
+  LAYOUT,
+  FlexAlignment
+} from 'styles'
 import { generateResponsiveRow } from 'utils/generateResponsiveGrid'
 
 const { spacing, mediaQueries } = LAYOUT

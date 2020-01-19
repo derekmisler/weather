@@ -14,7 +14,7 @@ const {
 
 interface GlobalStyleProps {
   theme: {
-    background: string,
+    background: string
     text: string
   }
 }

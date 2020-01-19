@@ -10,4 +10,6 @@ const StyledContainer = styled.main`
   min-height: 100vh;
 `
 
-export const Container = memo(({ children }) => <StyledContainer>{children}</StyledContainer>)
+export const Container = memo(({ children }) => (
+  <StyledContainer>{children}</StyledContainer>
+))

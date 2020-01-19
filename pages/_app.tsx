@@ -62,7 +62,10 @@ class MainApp extends App<AppProps> {
           <meta name='msapplication-TileColor' content='#da532c' />
           <meta name='theme-color' content='#ffffff' />
           <link rel='shortcut icon' href='favicon.ico' />
-          <link href="https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600,600i&display=swap" rel="stylesheet" />
+          <link
+            href='https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600,600i&display=swap'
+            rel='stylesheet'
+          />
         </Head>
         <Provider store={store}>
           <PersistGate persistor={persistor} loading={null}>
@@ -74,4 +77,3 @@ class MainApp extends App<AppProps> {
   }
 }
 export default withRedux(configureStore)(MainApp)
-
