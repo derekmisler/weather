@@ -1,16 +1,16 @@
 {
   "name": "whatever-the-weather",
-  "description": "Whether the weather be fine,\nOr whether the weather be not,\nWhether the weather be cold,\nOr whether the weather be hot,\nWe'll weather the weather\nWhatever the weather,\nWhether we like it or not!",
+  "description": "Whether the weather be fine,\nOr whether the weather be not,\nWhether the weather be cold,\nOr whether the weather be hot,\nWe'll weather the weather\nWhatever the weather,\nWhether we like it or not.",
   "repository": {
     "type": "git",
     "url": "https://github.com/zeit/now/tree/master/examples/nextjs"
   },
   "license": "MIT",
   "scripts": {
-    "dev": "npx next",
+    "dev": "node server.js",
     "build": "npx next build",
     "static": "npm run build && npx next export",
-    "start": "npx next start",
+    "start": "NODE_ENV=production node server.js",
     "stylelint": "npx stylelint './**/*.tsx'",
     "format": "npx prettier --write '**/*.{ts,tsx}'",
     "deploy": "npm run build && npx now",
@@ -18,7 +18,8 @@
     "clean:all": "rm -rf out && rm -rf node_modules && rm -rf package-lock.json && npm cache clean --force && npm i --no-audit"
   },
   "dependencies": {
-    "@types/react-redux": "^7.1.6",
+    "keymirror": "^0.1.1",
+    "lodash": "^4.17.15",
     "moment-timezone": "^0.5.27",
     "next": "^9.1.6",
     "next-redux-wrapper": "^4.0.1",
@@ -32,8 +33,11 @@
     "styled-components": "^4.4.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.9.4",
+    "@types/react-redux": "^7.1.6",
     "@types/styled-components": "^4.4.1",
     "babel-plugin-module-resolver": "^4.0.0",
     "babel-plugin-styled-components": "^1.10.0",

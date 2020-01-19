@@ -6,6 +6,7 @@ const {
   headingFontSizes,
   headingLineHeights,
   headingFontWeights,
+  headingLetterSpacing
 } = TYPOGRAPHY
 
 const { mediaQueries } = LAYOUT
@@ -26,6 +27,7 @@ export const Heading = styled.div.attrs<StyledHeadingProps>(
   text-align: ${({ textAlign = 'left' }) => textAlign};
   font-weight: ${({ level }) => headingFontWeights[level - 1]};
   line-height: ${({ level }) => headingLineHeights[level - 1]};
+  letter-spacing: ${({ level }) => headingLetterSpacing[level - 1]};
   font-size: ${({ level }) => headingFontSizes.mobile[level - 1]};
 
   @media ${mediaQueries.desktop} {

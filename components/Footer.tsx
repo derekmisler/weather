@@ -1,11 +1,14 @@
 import { memo } from 'react'
-import { Row } from 'components/Grid'
+import styled from 'styled-components'
 import { Text } from 'components/Typography'
+
+const StyledFooter = styled.footer`
+`
 
 export const Footer = memo(() => {
   return (
-    <Row as='footer'>
+    <StyledFooter>
       <Text>Footer</Text>
-    </Row>
+    </StyledFooter>
   )
 })

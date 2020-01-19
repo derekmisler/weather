@@ -23,24 +23,28 @@ export const themes = {
     text: black,
     link: blueDarker,
     linkHover: blueDarkest,
-    background: white
+    background: white,
+    border: gray
   },
   dayCloudy: {
     text: grayDarkest,
     link: blueDarker,
     linkHover: blueDarkest,
-    background: whiteDarkest
+    background: whiteDarkest,
+    border: gray
   },
   nightClear: {
     text: white,
     link: blue,
     linkHover: blueDarker,
-    background: black
+    background: black,
+    border: whiteDarker
   },
   nightCloudy: {
     text: whiteDarker,
     link: blue,
     linkHover: blueDarker,
-    background: grayDarkest
+    background: grayDarkest,
+    border: whiteDarkest
   }
 }

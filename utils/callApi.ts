@@ -1,10 +1,10 @@
 import queryString from 'query-string'
 
 export const NOAA_ENDPOINTS = {
-  users: 'stark/mobile/users',
+  points: 'points',
 }
 export const GOOGLE_ENDPOINTS = {
-  users: 'stark/mobile/users',
+  places: 'place/findplacefromtext/json',
 }
 
 const KEYS = {
@@ -14,46 +14,55 @@ const KEYS = {
 interface RequestDataTypes {
   method?: 'GET' | 'PUT' | 'POST',
   body?: any,
+  group?: string,
   endpoint: string,
   params?: { [key: string]: string | number }
 }
 
 const createRequestObj = (requestData: RequestDataTypes) => {
-  const { method, endpoint, body = {} } = requestData
+  const { method = 'GET', endpoint, body = {} } = requestData
   const isGoogle = Object.values(GOOGLE_ENDPOINTS).includes(endpoint)
-  const requestObject = {
+  const requestObject: RequestInit = {
     method: method || 'GET',
-    headers: { 'Content-Type': isGoogle ? 'application/json' : 'application/ld+json' },
+    headers: new Headers({
+      'Content-Type': isGoogle ? 'application/json' : 'application/ld+json'
+    }),
+    mode: 'cors',
+    cache: 'default',
     body: method !== 'GET' ? JSON.stringify(body) : undefined
   }
   return requestObject
 }
 
 export const createFullUrl = (requestData: RequestDataTypes) => {
-  const { endpoint, body, params = {} } = requestData
+  const { endpoint, group, params = {} } = requestData
   const isGoogle = Object.values(GOOGLE_ENDPOINTS).includes(endpoint)
 
   if (isGoogle) {
     params.key = KEYS.google
     params.inputtype = 'textquery'
-    params.input = body.text
     params.fields = 'formatted_address,geometry'
   }
 
   const API_BASE = isGoogle
-    ? 'https://maps.googleapis.com/maps/api/place/findplacefromtext/json'
+    ? 'https://maps.googleapis.com/maps/api'
     : 'https://api.weather.gov'
 
   let fullUrl = `${API_BASE}/${endpoint}`
-  if (params) fullUrl = `${fullUrl}?${queryString.stringify(params)}`
+  if (group) fullUrl += `/${group}`
+  if (params) fullUrl += `?${queryString.stringify(params)}`
   return fullUrl
 }
 
 export const callApi = async (requestData: RequestDataTypes) => {
   const url = createFullUrl(requestData)
   const request = createRequestObj(requestData)
+  console.log({ url, request })
   try {
     const response = await fetch(url, request)
+    console.log('--------------------')
+    console.log('response', response)
+    console.log('--------------------')
     return await response.json()
   } catch (error) {
     return Promise.reject(error)

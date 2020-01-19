@@ -1,50 +1,15 @@
-import { HTMLProps } from 'react'
-
-export type SmMdLgSizes = 'small' | 'medium' | 'large'
-
-export interface DesktopMobile {
-  desktop: string
-  mobile: string
-}
-
-export interface StyledComponentProps extends HTMLProps<HTMLDivElement> {
-  as?: any
-  ref?: any
-}
-
-export type FlexAlignment =
-  'flex-start'
-  | 'flex-end'
-  | 'center'
-  | 'stretch'
-  | 'space-around'
-  | 'space-between'
-  | 'space-evenly'
-  | 'baseline'
-
-const breakpoints = {
-  mobile: '64em',
-  desktop: '64.063em'
-}
-
-const transitionDefaults = {
-  durationFast: '230ms',
-  duration: '500ms',
-  durationSlow: '1500ms',
-  property: 'all',
-  timing: 'cubic-bezier(.68, -.55, .265, 1.55)'
-}
+import { BREAKPOINTS, TRANSITIONS } from './variables'
 
 export const LAYOUT = {
-  transitionDefaults,
-  borderRadius: '50%',
-  borderSize: '.85rem',
+  singleLineComponentHeight: '2rem',
+  borderRadius: `calc(1rem / 2)`,
+  borderSize: '.5rem',
   borderStyle: 'solid',
-  transition: `${transitionDefaults.duration} ${transitionDefaults.property} ${transitionDefaults.timing}`,
-  breakpoints,
+  transitionDefaults: TRANSITIONS,
+  transition: `${TRANSITIONS.duration} ${TRANSITIONS.property} ${TRANSITIONS.timing}`,
   mediaQueries: {
-    mobile: `screen and (max-width: ${breakpoints.mobile})`,
-    desktop: `screen and (min-width: ${breakpoints.desktop})`,
+    mobile: `screen and (max-width: ${BREAKPOINTS.mobile})`,
+    desktop: `screen and (min-width: ${BREAKPOINTS.desktop})`,
     fullHeight: `screen and (max-height: 100vh)`
   },
   dropShadow: {

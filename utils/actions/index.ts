@@ -3,4 +3,4 @@ export interface ActionTypes {
   payload: any
 }
 
-export default {}
+export * from './places'

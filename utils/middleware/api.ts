@@ -1,12 +1,10 @@
 import { callApi } from 'utils/callApi'
-import { ActionTypes } from 'utils/actions'
 
 export interface ResponseDataTypes {
-  response: any,
-  
+  response: any
 }
 
-export const api = () => (next: Function) => async (action: ActionTypes) => {
+export const api = () => next => async action => {
   const { payload = {} } = action
   if (!payload.callApi) return next(action)
 
