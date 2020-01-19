@@ -27,7 +27,7 @@ const createRequestObj = (requestData: RequestDataTypes) => {
     headers: new Headers({
       'Content-Type': isGoogle ? 'application/json' : 'application/ld+json'
     }),
-    mode: 'cors',
+    mode: 'no-cors',
     cache: 'default',
     body: method !== 'GET' ? JSON.stringify(body) : undefined
   }
