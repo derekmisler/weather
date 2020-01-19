@@ -1,11 +1,15 @@
+import { hexToRgba } from 'utils/hexToRgba'
+
 export const gray = '#4c566a'
 export const grayDarker = '#434c5e'
 export const grayDarkest = '#3b4252'
 export const black = '#2e3440'
+export const transparentBlack = hexToRgba(gray, .5)
 
 export const white = '#ECEFF4'
 export const whiteDarker = '#E5E9F0'
 export const whiteDarkest = '#D8DEE9'
+export const transparentWhite = hexToRgba(whiteDarkest, .5)
 
 export const red = '#BF616A'
 export const orange = '#D08770'
@@ -24,27 +28,31 @@ export const themes = {
     link: blueDarker,
     linkHover: blueDarkest,
     background: white,
-    border: gray
+    border: whiteDarkest,
+    shadow: transparentBlack
   },
   dayCloudy: {
     text: grayDarkest,
     link: blueDarker,
     linkHover: blueDarkest,
     background: whiteDarkest,
-    border: gray
+    border: gray,
+    shadow: transparentBlack
   },
   nightClear: {
     text: white,
     link: blue,
     linkHover: blueDarker,
     background: black,
-    border: whiteDarker
+    border: whiteDarker,
+    shadow: transparentBlack
   },
   nightCloudy: {
     text: whiteDarker,
     link: blue,
     linkHover: blueDarker,
     background: grayDarkest,
-    border: whiteDarkest
+    border: whiteDarkest,
+    shadow: transparentBlack
   }
 }

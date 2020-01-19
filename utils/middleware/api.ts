@@ -20,14 +20,8 @@ export const api = () => next => async action => {
 
   try {
     const response = await callApi(payload.requestData)
-    console.log('--------------------')
-    console.log('response', response)
-    console.log('--------------------')
     return next(actionWith({ type: successType, payload: { response } }))
   } catch (error) {
-    console.log('--------------------')
-    console.log('error', error)
-    console.log('--------------------')
     return next(actionWith({ type: failureType, payload: { error } }))
   }
 }

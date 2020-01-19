@@ -1,6 +1,6 @@
 import { RefObject, FormEvent, FC, useEffect, useRef, memo } from 'react'
 import styled from 'styled-components'
-import { Text } from 'components/Typography'
+import { Text, Span } from 'components/Typography'
 import { LAYOUT, DEFAULT_TEXT_STYLES, red, green } from 'styles'
 
 const {
@@ -14,15 +14,21 @@ interface InputProps {
   id: string
   onChange: Function
   defaultValue?: string
+  placeholder?: string
   autoFocus?: boolean
 }
 
-const InputWrapper = styled.div``
+const InputWrapper = styled.div`
+  display: block;
+  width: 100%;
+`
 
 const TextInput = styled.input<{ valid?: boolean, invalid?: boolean }>`
   ${DEFAULT_TEXT_STYLES}
   padding: ${spacing.small};
-  margin: 0 ${spacing.small};
+  margin: 0;
+  display: block;
+  width: 100%;
   position: relative;
   appearance: none;
   outline: none;
@@ -48,7 +54,8 @@ export const Input: FC<InputProps> = memo(({
   onChange,
   defaultValue,
   id,
-  autoFocus
+  autoFocus,
+  placeholder
 }) => {
   const handleChange = (e: FormEvent<HTMLInputElement>) => {
     const { currentTarget: { value = '' } = {} } = e || {}
@@ -62,8 +69,8 @@ export const Input: FC<InputProps> = memo(({
   }, [])
   return (
     <InputWrapper>
-      { label && <Text as='label' htmlFor={id}>{label}</Text> }
-      <TextInput ref={inputRef} id={id} type='text' defaultValue={defaultValue} onChange={handleChange} />
+      { label && <Text as='label' htmlFor={id}><Span italic small>{label}</Span></Text> }
+      <TextInput placeholder={placeholder} ref={inputRef} id={id} type='text' defaultValue={defaultValue} onChange={handleChange} />
     </InputWrapper>
   )
 })

@@ -12,7 +12,7 @@ const {
 const { mediaQueries } = LAYOUT
 
 export interface StyledHeadingProps extends StyledComponentProps {
-  textAlign?: string
+  textAlign?: 'center' | 'right' | 'left'
   level: 1 | 2 | 3 | 4 | 5 | 6
 }
 

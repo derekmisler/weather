@@ -3,7 +3,7 @@ import { BREAKPOINTS, TRANSITIONS } from './variables'
 export const LAYOUT = {
   singleLineComponentHeight: '2rem',
   borderRadius: `calc(1rem / 2)`,
-  borderSize: '.5rem',
+  borderSize: '.25rem',
   borderStyle: 'solid',
   transitionDefaults: TRANSITIONS,
   transition: `${TRANSITIONS.duration} ${TRANSITIONS.property} ${TRANSITIONS.timing}`,

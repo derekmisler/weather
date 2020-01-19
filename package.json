@@ -38,6 +38,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-transform-react-display-name": "^7.8.3",
+    "@types/googlemaps": "^3.39.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.9.4",
     "@types/react-redux": "^7.1.6",

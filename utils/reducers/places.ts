@@ -1,15 +1,23 @@
-import { PLACES_ACTION_TYPES } from 'utils/actions'
+import { PLACES_ACTION_TYPES, RESET_PLACES, SELECT_PLACE_ACTION_TYPES } from 'utils/actions'
+import { parseSuggestions } from 'utils/parseSuggestions'
 
 interface PlacesState {
-  fetching?: boolean
+  fetchingPlaces?: boolean
+  fetchingLatLong?: boolean
   error?: string
-  response?: any
+  suggestions: any[]
+  selections?: any
 }
 const defaultState = {
-  fetching: false
+  fetchingPlaces: false,
+  fetchingLatLong: false,
+  suggestions: [],
+  selection: undefined,
+  error: undefined
 } as PlacesState
 
 const { PLACES_REQUEST, PLACES_SUCCESS, PLACES_ERROR } = PLACES_ACTION_TYPES
+const { SELECT_PLACE_REQUEST, SELECT_PLACE_SUCCESS, SELECT_PLACE_ERROR } = SELECT_PLACE_ACTION_TYPES
 
 export const placesReducer = (state = defaultState, action) => {
   if (!action) return state
@@ -18,19 +26,46 @@ export const placesReducer = (state = defaultState, action) => {
     case PLACES_REQUEST:
       return {
         ...state,
-        fetching: true
+        fetchingPlaces: true
       }
     case PLACES_SUCCESS:
       return {
         ...state,
-        response: payload.response,
-        fetching: false
+        suggestions: parseSuggestions(payload.response),
+        fetchingPlaces: false
       }
     case PLACES_ERROR:
       return {
         ...state,
         error: payload.error,
-        fetching: false
+        suggestions: [],
+        fetchingPlaces: false
+      }
+    case SELECT_PLACE_REQUEST:
+      return {
+        ...state,
+        fetchingLatLong: true,
+        selection: undefined
+      }
+    case SELECT_PLACE_SUCCESS:
+      return {
+        ...state,
+        selection: payload.location,
+        fetchingLatLong: false
+      }
+    case SELECT_PLACE_ERROR:
+      return {
+        ...state,
+        error: payload.error,
+        fetchingLatLong: false
+      }
+      case RESET_PLACES:
+      return {
+        ...state,
+        suggestions: [],
+        fetchingPlaces: false,
+        fetchingLatLong: false,
+        selection: undefined
       }
     default:
       return state

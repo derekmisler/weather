@@ -5,9 +5,11 @@ import { LAYOUT } from 'styles'
 const { spacing } = LAYOUT
 
 const StyledContainer = styled.main`
-  margin: 0;
-  padding: ${spacing.medium};
+  padding: 0;
+  margin: ${spacing.medium};
   min-height: 100vh;
+  max-width: 100%;
+  overflow: hidden;
 `
 
 export const Container = memo(({ children }) => (

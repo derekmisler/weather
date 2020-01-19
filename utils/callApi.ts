@@ -5,7 +5,8 @@ export const NOAA_ENDPOINTS = {
   points: 'points'
 }
 export const GOOGLE_ENDPOINTS = {
-  places: 'place/findplacefromtext/json'
+  places: 'place/autocomplete/json',
+  geocode: 'geocode/json'
 }
 
 const KEYS = {
@@ -40,11 +41,7 @@ export const createFullUrl = (requestData: RequestDataTypes) => {
   const { endpoint, group, params = {} } = requestData
   const isGoogle = Object.values(GOOGLE_ENDPOINTS).includes(endpoint)
 
-  if (isGoogle) {
-    params.key = KEYS.google
-    params.inputtype = 'textquery'
-    params.fields = 'formatted_address,geometry'
-  }
+  if (isGoogle) params.key = KEYS.google
 
   const API_BASE = isGoogle
     ? 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api'
