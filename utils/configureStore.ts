@@ -8,9 +8,7 @@ import { rootReducer } from './reducers'
 export const configureStore = (preloadedState = {}) => {
   let store
   const middlewares = [thunkMiddleware, ...appMiddleware]
-  const composedMiddleware = composeWithDevTools(
-    applyMiddleware(...middlewares)
-  )
+  const composedMiddleware = composeWithDevTools({ trace: true, traceLimit: 30 })(applyMiddleware(...middlewares))
   const isClient = typeof window !== 'undefined'
 
   if (isClient) {

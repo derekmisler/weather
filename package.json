@@ -7,10 +7,10 @@
   },
   "license": "MIT",
   "scripts": {
-    "dev": "npx next",
+    "dev": "node server.js",
     "build": "npx next build",
     "static": "npm run build && npx next export",
-    "start": "npx next start",
+    "start": "NODE_ENV=production node server.js",
     "stylelint": "npx stylelint './**/*.tsx'",
     "format": "npx prettier --write '**/*.{ts,tsx}'",
     "deploy": "npm run build && npx now",

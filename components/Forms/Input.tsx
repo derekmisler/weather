@@ -28,6 +28,7 @@ const TextInput = styled.input<{ valid?: boolean, invalid?: boolean }>`
   outline: none;
   background-color: transparent;
   border: none;
+  border-radius: 0;
   border-bottom-style: ${borderStyle};
   border-bottom-width: ${borderSize};
   border-bottom-color: ${({ valid, invalid, theme }) => {

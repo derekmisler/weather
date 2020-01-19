@@ -10,12 +10,24 @@ export const api = () => next => async action => {
 
   const [requestType, successType, failureType] = payload.actionTypes
 
-  next({ type: requestType, payload })
+  const actionWith = data => {
+    const finalAction = { ...action, ...data }
+    delete finalAction[payload]
+    return finalAction
+  }
+
+  next(actionWith({ type: requestType, payload }))
 
   try {
     const response = await callApi(payload.requestData)
-    return next({ type: successType, payload: { response } })
+    console.log('--------------------')
+    console.log('response', response)
+    console.log('--------------------')
+    return next(actionWith({ type: successType, payload: { response } }))
   } catch (error) {
-    return next({ type: failureType, payload: { error } })
+    console.log('--------------------')
+    console.log('error', error)
+    console.log('--------------------')
+    return next(actionWith({ type: failureType, payload: { error } }))
   }
 }

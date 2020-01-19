@@ -1,6 +1,5 @@
 import { FC, memo } from 'react'
 import { useDispatch } from 'react-redux'
-import debounce from 'lodash/debounce'
 import { Input } from 'components/Forms'
 import { getPlaces } from 'utils/actions'
 

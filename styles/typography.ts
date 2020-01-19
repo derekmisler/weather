@@ -23,12 +23,12 @@ export const TYPOGRAPHY = {
     desktop: ['9.75rem', '7.5rem', '5rem', '3rem', '2rem', '1.5rem']
   },
   headingLetterSpacing: [
-    '-.95rem',
+    '-.55rem',
     '-.75rem',
     '-.75rem',
     '-.75rem',
-    '-.75rem',
-    '-.75rem'
+    '0',
+    '0'
   ],
   headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],
   headingFontWeights: new Array(6).fill('600')
