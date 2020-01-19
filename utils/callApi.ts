@@ -61,7 +61,7 @@ export const callApi = async (requestData: RequestDataTypes) => {
   try {
     const response = await fetch(url, request)
     console.log('--------------------')
-    console.log('callApi', JSON.parse(response))
+    console.log('callApi', response)
     console.log('--------------------')
     return await response.json()
   } catch (error) {

@@ -9,8 +9,8 @@ const app = next({ dev })
 const handle = app.getRequestHandler()
 
 const httpsOptions = {
-  key: readFileSync('./localhost.key'),
-  cert: readFileSync('./localhost.crt')
+  key: readFileSync('../certificates/server.key'),
+  cert: readFileSync('../certificates/server.crt')
 }
 
 app.prepare()

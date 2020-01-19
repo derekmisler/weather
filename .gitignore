@@ -22,8 +22,13 @@ yarn-error.log*
 .env
 .env.build
 
-localhost.crt
-localhost.key
+*.crt
+*.key
+*.pem
+*.cnf
+*.csr
+*.srl
+*.ext
 .svn
 .cache
 .next
