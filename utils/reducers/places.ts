@@ -6,13 +6,13 @@ interface PlacesState {
   fetchingLatLong?: boolean
   error?: string
   suggestions: any[]
-  selections?: any
+  selection?: any
 }
 const defaultState = {
   fetchingPlaces: false,
   fetchingLatLong: false,
   suggestions: [],
-  selection: undefined,
+  selection: {},
   error: undefined
 } as PlacesState
 
@@ -45,13 +45,12 @@ export const placesReducer = (state = defaultState, action) => {
       return {
         ...state,
         fetchingLatLong: true,
-        selection: undefined
       }
     case SET_CURRENT_PLACE:
     case SELECT_PLACE_SUCCESS:
       return {
         ...state,
-        selection: payload.location,
+        selection: payload,
         fetchingLatLong: false
       }
     case SELECT_PLACE_ERROR:
@@ -65,8 +64,7 @@ export const placesReducer = (state = defaultState, action) => {
         ...state,
         suggestions: [],
         fetchingPlaces: false,
-        fetchingLatLong: false,
-        selection: undefined
+        fetchingLatLong: false
       }
     default:
       return state

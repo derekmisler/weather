@@ -8,11 +8,10 @@ import { Link } from 'components/atoms/Typography'
 import { TYPOGRAPHY } from 'styles'
 import { RootState } from 'utils/reducers'
 import { useTheme } from 'utils/useTheme'
-import moment from 'moment-timezone'
 import FilterDramaRoundedIcon from '@material-ui/icons/FilterDramaRounded'
 import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded'
 
-export const Today: SFC<{ active?: boolean, forecast: any, small?: boolean }> = memo(({ active, forecast, small }) => {
+export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean }> = memo(({ active, forecast, small }) => {
   const {
     name,
     startTime,
@@ -25,19 +24,17 @@ export const Today: SFC<{ active?: boolean, forecast: any, small?: boolean }> = 
   } = forecast || {}
 
   const isCloudy = shortForecast.toLowerCase().indexOf('cloudy') > -1
+  let icon = () => <WbSunnyRoundedIcon style={{ fontSize: TYPOGRAPHY.iconSize }} />
+  if (isCloudy) icon = () => <FilterDramaRoundedIcon style={{ fontSize: TYPOGRAPHY.iconSize }} />
 
   return (
     <Row columnsDesktop={7}>
       <Col rangeDesktop='3-5'>
         <Animated delay={200} active={active}>
           <Heading textAlign='center' level={small ? 5 : 2}>
-            {moment(startTime).format('dddd')}
+            {name}
             <br />
-            {
-              isCloudy
-              ? <FilterDramaRoundedIcon style={{ fontSize: TYPOGRAPHY.iconSize }} />
-              : <WbSunnyRoundedIcon style={{ fontSize: TYPOGRAPHY.iconSize }} />
-            }
+            {icon()}
           </Heading>
         </Animated>
         <Animated delay={300} active={active}>

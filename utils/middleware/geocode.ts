@@ -13,6 +13,9 @@ export const geocode = () => next => async action => {
   }
 
   next(actionWith({ type: requestType, payload }))
+  console.log('--------------------')
+  console.log('payload.place', payload.place)
+  console.log('--------------------')
   const requestData = {
     endpoint: GOOGLE_ENDPOINTS.geocode,
     params: {
@@ -22,7 +25,10 @@ export const geocode = () => next => async action => {
   try {
     const response = await callApi(requestData)
     const { results: [{ geometry: { location = {} } = {} }] = [] } = response || {}
-    return next(actionWith({ type: successType, payload: { location } }))
+    return next(actionWith({ type: successType, payload: {
+      location,
+      description: payload?.place?.description
+    } }))
   } catch (error) {
     return next(actionWith({ type: failureType, payload: { error } }))
   }

@@ -67,7 +67,7 @@ const AutocompleteItem: FC<ItemProps> = memo(({ place, title, subtitle }) => {
 export const LocationAutocomplete = memo(() => {
   const [inputValue, setInputValue] = useState('')
   const [suggestionsVisible, setSuggestionsVisible] = useState(false)
-  const { suggestions = [], selection } = useSelector((state: RootState) => state.places)
+  const { suggestions = [] } = useSelector((state: RootState) => state.places)
 
   const dispatch = useDispatch()
 

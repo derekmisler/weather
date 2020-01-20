@@ -60,7 +60,6 @@ export const weatherReducer = (state = defaultState, action) => {
         response: { properties: { periods = [] } = {} } = {}
       } = payload
       const [forecastToday] = periods
-      periods.shift()
       return {
         ...state,
         forecastToday,

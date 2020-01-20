@@ -12,6 +12,7 @@ import NearMeRoundedIcon from '@material-ui/icons/NearMeRounded'
 
 export const Search = memo(() => {
   const { selection } = useSelector((state: RootState) => state.places)
+  const { location } = selection || {}
   const router = useRouter()
   const dispatch = useDispatch()
 
@@ -19,16 +20,19 @@ export const Search = memo(() => {
   const [searchIsActive, setSearchIsActive] = useState(!(router.query && router.query.lat && router.query.lng))
 
   useEffect(() => {
+    dispatch(resetPlaces())
+  }, [])
+
+  useEffect(() => {
     setBrowserSupportsGeo(!!(navigator && navigator.geolocation))
   }, [navigator])
 
   useEffect(() => {
-    if (selection && selection.lat && selection.lng) {
-      router.push({ pathname: '/', query: selection })
+    if (location && location.lat && location.lng) {
+      router.push({ pathname: '/', query: location })
       setSearchIsActive(false)
-      dispatch(resetPlaces())
     }
-  }, [selection])
+  }, [location])
 
   useEffect(() => {
     setSearchIsActive(!(router.query && router.query.lat && router.query.lng))
