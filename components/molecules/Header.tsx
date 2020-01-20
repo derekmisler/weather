@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { SFC, memo } from 'react'
 import { Animated } from 'components/molecules/Animated'
-import { Heading, Span, Error } from 'components/atoms/Typography'
+import { Heading, Span } from 'components/atoms/Typography'
 import { LAYOUT } from 'styles'
 
 const StyledHeader = styled.header`
