@@ -27,6 +27,7 @@ const StyledGrid = styled.div<RowProps>`
   padding: ${({ padding }) => (padding ? `0 ${spacing[padding]}` : 0)};
   margin: 0 auto;
   margin-bottom: ${({ margin }) => (margin ? spacing[margin] : 0)};
+  grid-row-gap: ${({ gap }) => (gap ? spacing[gap] : 0)};
   grid-column-gap: ${({ gap }) => (gap ? spacing[gap] : 0)};
   align-items: ${({ vAlign = 'stretch' }) => vAlign};
   justify-items: ${({ hAlign = 'stretch' }) => hAlign};

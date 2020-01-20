@@ -24,10 +24,10 @@ export const getStation = ({ lat, lng }) => ({
   }
 })
 
-export const getWeather = (url: string) => ({
+export const getWeather = (url: string, key: string) => ({
   payload: {
     callApi: true,
-    requestData: { url },
+    requestData: { key, url },
     actionTypes: Object.keys(WEATHER_ACTION_TYPES)
   }
 })

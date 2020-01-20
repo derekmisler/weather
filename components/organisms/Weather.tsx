@@ -7,6 +7,7 @@ import { Text } from 'components/atoms/Typography'
 import { LocationAutocomplete } from 'components/molecules/Forms'
 import { getStation, getWeather } from 'utils/actions'
 import { DayForecast } from 'components/molecules/DayForecast'
+import { HourlyForecast } from 'components/molecules/HourlyForecast'
 import { NextSeven } from 'components/molecules/NextSeven'
 import { Button } from 'components/atoms/Buttons'
 import { WEATHER_TABS } from 'constants/weather'
@@ -19,12 +20,13 @@ const Tab: SFC<{ title: string, id: string, onClick: Function, activeTab: string
 })
 
 export const Weather = memo(() => {
-  const { selection, properties, forecastToday } = useSelector((state: RootState) => state.weather)
+  const { selection, properties, forecastToday, forecastHourly = [] } = useSelector((state: RootState) => state.weather)
   const { location, description } = selection || {}
   const [activeTab, setActiveTab] = useState('today')
   const [weatherIsActive, setWeatherIsActive] = useState(false)
   const dispatch = useDispatch()
   const router = useRouter()
+  const maxHourlyTemp = forecastHourly.map(h => Number(h.temperature)).sort((a, b) => b - a)[0]
 
   useEffect(() => {
     if (location && location.lat && location.lng) {
@@ -38,9 +40,12 @@ export const Weather = memo(() => {
     setWeatherIsActive(!!forecastID)
     if (forecastID) {
       if ((Object.values(properties[forecastID] || {}) || []).length) {
-        const { forecast } = properties[forecastID]
+        const { forecast, forecastHourly } = properties[forecastID]
         if (forecast) {
-          dispatch(getWeather(forecast))
+          dispatch(getWeather(forecast, 'day'))
+        }
+        if (forecastHourly) {
+          dispatch(getWeather(forecastHourly, 'hourly'))
         }
       } else {
         dispatch(getStation({ lat, lng }))
@@ -61,11 +66,18 @@ export const Weather = memo(() => {
       </Row>
       <Text>{description}</Text>
       { activeTab === 'today' && (
-        <Row columnsDesktop={7}>
-          <Col rangeDesktop='3-5'>
-            <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
-          </Col>
-        </Row>
+        <>
+          <Row columnsDesktop={7} margin='large'>
+            <Col rangeDesktop='3-5'>
+              <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
+            </Col>
+          </Row>
+          <Row columns={3} columnsDesktop={12}>
+            { forecastHourly.map((f, i) => (
+              <HourlyForecast key={JSON.stringify(f)} maxHourlyTemp={maxHourlyTemp} forecast={f} active={activeTab === 'today'}  index={i}/>
+            ))}
+          </Row>
+        </>
       )}
       { activeTab === 'nextSeven' && (
         <NextSeven active={activeTab === 'nextSeven'} />

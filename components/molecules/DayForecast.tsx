@@ -1,12 +1,7 @@
-import { SFC, memo, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import { SFC, memo } from 'react'
 import { Animated } from 'components/molecules/Animated'
 import { Heading, Span, Text } from 'components/atoms/Typography'
-import { useRouter } from 'next/router'
-import { Link } from 'components/atoms/Typography'
 import { Weather } from 'components/atoms/Icons'
-import { RootState } from 'utils/reducers'
-import { useTheme } from 'utils/useTheme'
 
 export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean }> = memo(({ active, forecast, small }) => {
   const {
@@ -40,7 +35,7 @@ export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean
       </Animated>
       <Animated delay={500} active={active}>
         <Heading textAlign='center' level={small ? 5 : 4}>
-          {temperature}&deg; {temperatureUnit}{temperatureTrend && ` and ${temperatureTrend}`}
+          {temperature}&deg;{temperatureUnit}{temperatureTrend && ` and ${temperatureTrend}`}
         </Heading>
       </Animated>
       { !small && (

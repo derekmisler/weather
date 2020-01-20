@@ -14,6 +14,7 @@ const defaultState = {
   properties: {},
   forecastToday: {},
   forecastFuture: [],
+  forecastHourly: [],
   error: undefined
 } as PlacesState
 
@@ -57,13 +58,17 @@ export const weatherReducer = (state = defaultState, action) => {
       }
     case WEATHER_SUCCESS: {
       const {
+        requestData: { key },
         response: { properties: { periods = [] } = {} } = {}
       } = payload
       const [forecastToday] = periods
+      const isSingleDay = key === 'day'
+      const forecast = isSingleDay
+        ? { forecastToday: forecastToday, forecastFuture: [...periods] }
+        : { forecastHourly: periods.slice(0, 12) }
       return {
         ...state,
-        forecastToday,
-        forecastFuture: [...periods],
+        ...forecast,
         fetchingWeather: false
       }
     }
