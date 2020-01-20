@@ -8,26 +8,21 @@ import { Link } from 'components/atoms/Typography'
 import { TYPOGRAPHY } from 'styles'
 import { RootState } from 'utils/reducers'
 import { useTheme } from 'utils/useTheme'
+import moment from 'moment-timezone'
 import FilterDramaRoundedIcon from '@material-ui/icons/FilterDramaRounded'
 import WbSunnyRoundedIcon from '@material-ui/icons/WbSunnyRounded'
 
-export const Today: SFC<{ active?: boolean }> = memo(({ active }) => {
-  const router = useRouter()
-  const { forecastToday } = useSelector((state: RootState) => state.weather)
-  const [, toggleTheme] = useTheme()
-  console.log('--------------------')
-  console.log('forecastToday', forecastToday)
-  console.log('--------------------')
-
+export const Today: SFC<{ active?: boolean, forecast: any, small?: boolean }> = memo(({ active, forecast, small }) => {
   const {
     name,
+    startTime,
     shortForecast = '',
     detailedForecast,
     temperature,
     temperatureUnit,
     temperatureTrend,
     isDaytime
-  } = forecastToday || {}
+  } = forecast || {}
 
   const isCloudy = shortForecast.toLowerCase().indexOf('cloudy') > -1
 
@@ -35,8 +30,8 @@ export const Today: SFC<{ active?: boolean }> = memo(({ active }) => {
     <Row columnsDesktop={7}>
       <Col rangeDesktop='3-5'>
         <Animated delay={200} active={active}>
-          <Heading textAlign='center' level={2}>
-            {name}
+          <Heading textAlign='center' level={small ? 5 : 2}>
+            {moment(startTime).format('dddd')}
             <br />
             {
               isCloudy
@@ -46,18 +41,20 @@ export const Today: SFC<{ active?: boolean }> = memo(({ active }) => {
           </Heading>
         </Animated>
         <Animated delay={300} active={active}>
-          <Heading textAlign='center' level={3}>
+          <Heading textAlign='center' level={small ? 6 : 3}>
             {shortForecast}
           </Heading>
         </Animated>
         <Animated delay={500} active={active}>
-          <Heading textAlign='center' level={4}>
+          <Heading textAlign='center' level={small ? 6 : 4}>
             {temperature}&deg; {temperatureUnit}{temperatureTrend && ` and ${temperatureTrend}`}
           </Heading>
         </Animated>
-        <Animated delay={600} active={active}>
-          <Text textAlign='center'>{detailedForecast}</Text>
-        </Animated>
+        { !small && (
+          <Animated delay={600} active={active}>
+            <Text textAlign='center'>{detailedForecast}</Text>
+          </Animated>
+        )}
       </Col>
     </Row>
   )

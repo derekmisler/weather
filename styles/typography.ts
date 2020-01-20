@@ -20,7 +20,7 @@ export const TYPOGRAPHY = {
   baseFontWeight: '400',
   boldFontWeight: '900',
   headingFontSizes: {
-    mobile: ['5rem', '4rem', '3rem', '2rem', '1.5rem', '1rem'],
+    mobile: ['4rem', '3rem', '2rem', '1rem', '1rem', '1rem'],
     desktop: ['7rem', '6rem', '5rem', '3rem', '2rem', '1.5rem']
   },
   headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],

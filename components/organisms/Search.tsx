@@ -1,4 +1,3 @@
-import styled from 'styled-components'
 import { useEffect, memo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
@@ -10,10 +9,6 @@ import { resetPlaces, currentPlace } from 'utils/actions'
 import { Animated } from 'components/molecules/Animated'
 import { Button } from 'components/atoms/Buttons'
 import NearMeRoundedIcon from '@material-ui/icons/NearMeRounded'
-
-const StyledSearchWrapper = styled.div`
-  position: absolute;
-`
 
 export const Search = memo(() => {
   const { selection } = useSelector((state: RootState) => state.places)
@@ -46,9 +41,9 @@ export const Search = memo(() => {
       })
     }
   }
-
+  if (!searchIsActive) return null
   return (
-    <StyledSearchWrapper>
+    <>
       <Animated delay={200} active={searchIsActive}>
         <Row columnsDesktop={5}>
           <Col rangeDesktop='2-4'>
@@ -62,6 +57,6 @@ export const Search = memo(() => {
           </Col>
         </Row>
       </Animated>
-    </StyledSearchWrapper>
+    </>
   )
 })

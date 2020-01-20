@@ -9,7 +9,6 @@ const StyledContainer = styled.main`
   margin: ${spacing.large};
   min-height: 100vh;
   max-width: 100%;
-  overflow: hidden;
   position: relative;
 `
 

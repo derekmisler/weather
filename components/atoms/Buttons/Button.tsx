@@ -1,23 +1,33 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { TYPOGRAPHY, LAYOUT, BUTTON_TEXT_STYLES } from 'styles'
 
-const { buttonFontSize, headingFontFamily } = TYPOGRAPHY
+const { baseFontSize } = TYPOGRAPHY
 
 const { spacing, borderRadius, borderStyle, borderSize, mediaQueries } = LAYOUT
 
 interface StyledButtonProps {
   accent?: boolean
   href?: string
+  tab?: boolean
 }
+
+const tabStyle = css`
+  border: none;
+  border-radius: 0;
+  border-bottom: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
+`
+const buttonStyle = css`
+  border-radius: ${borderRadius};
+  border: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
+`
 
 export const Button = styled.button.attrs<StyledButtonProps>(({ href }) => ({
   as: href ? 'a' : 'button'
 }))<StyledButtonProps>`
   ${BUTTON_TEXT_STYLES}
+  ${({ tab }) => tab ? tabStyle : buttonStyle}
   background-color: transparent;
-  border: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
   text-decoration: none;
-  border-radius: ${borderRadius};
   width: 100%;
   display: flex;
   align-items: center;
