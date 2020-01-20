@@ -2,6 +2,7 @@ import { useEffect, memo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { Row, Col } from 'components/atoms/Grid'
+import { Header } from 'components/molecules/Header'
 import { Heading, Text, Span, Link } from 'components/atoms/Typography'
 import { RootState } from 'utils/reducers'
 import { LocationAutocomplete } from 'components/molecules/Forms'
@@ -21,14 +22,19 @@ export const Search = memo(() => {
 
   useEffect(() => {
     dispatch(resetPlaces())
+    setSearchIsActive(true)
   }, [])
+
+  useEffect(() => {
+    if (searchIsActive) router.replace({ pathname: '/' })
+  }, [searchIsActive])
 
   useEffect(() => {
     setBrowserSupportsGeo(!!(navigator && navigator.geolocation))
   }, [navigator])
 
   useEffect(() => {
-    if (location && location.lat && location.lng) {
+    if (location && location.lat && location.lng && searchIsActive) {
       router.push({ pathname: '/', query: location })
       setSearchIsActive(false)
     }
@@ -48,6 +54,7 @@ export const Search = memo(() => {
   if (!searchIsActive) return null
   return (
     <>
+      <Header title='Whatever the Weather'/>
       <Animated delay={200} active={searchIsActive}>
         <Row columnsDesktop={5}>
           <Col rangeDesktop='2-4'>

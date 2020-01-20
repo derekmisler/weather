@@ -1,8 +1,9 @@
-import { STATION_ACTION_TYPES, WEATHER_ACTION_TYPES } from 'utils/actions'
+import { STATION_ACTION_TYPES, WEATHER_ACTION_TYPES, ALERT_ACTION_TYPES } from 'utils/actions'
 
 interface PlacesState {
   fetchingWeatherProperties?: boolean
   fetchingWeather?: boolean
+  alerts?: boolean
   error?: string
   properties: any
   forecastToday: any
@@ -15,11 +16,13 @@ const defaultState = {
   forecastToday: {},
   forecastFuture: [],
   forecastHourly: [],
-  error: undefined
+  error: undefined,
+  alerts: undefined
 } as PlacesState
 
 const { STATION_REQUEST, STATION_SUCCESS, STATION_ERROR } = STATION_ACTION_TYPES
 const { WEATHER_REQUEST, WEATHER_SUCCESS, WEATHER_ERROR } = WEATHER_ACTION_TYPES
+const { ALERT_SUCCESS } = ALERT_ACTION_TYPES
 
 export const weatherReducer = (state = defaultState, action) => {
   if (!action) return state
@@ -28,7 +31,9 @@ export const weatherReducer = (state = defaultState, action) => {
     case STATION_REQUEST:
       return {
         ...state,
-        fetchingWeatherProperties: true
+        error: undefined,
+        fetchingWeatherProperties: true,
+        alerts: undefined
       }
     case STATION_SUCCESS: {
       const {
@@ -42,6 +47,7 @@ export const weatherReducer = (state = defaultState, action) => {
           ...state.properties,
           [forecastID]: properties
         },
+        error: undefined,
         fetchingWeatherProperties: false
       }
     }
@@ -49,12 +55,15 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: payload.error,
-        fetchingWeatherProperties: false
+        fetchingWeatherProperties: false,
+        alerts: undefined
       }
     case WEATHER_REQUEST:
       return {
         ...state,
-        fetchingWeather: true
+        error: undefined,
+        fetchingWeather: true,
+        alerts: undefined
       }
     case WEATHER_SUCCESS: {
       const {
@@ -69,6 +78,7 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         ...forecast,
+        error: undefined,
         fetchingWeather: false
       }
     }
@@ -76,7 +86,13 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: `Oh no, something went wrong! Just start over. It's really all you can do.`,
-        fetchingWeather: false
+        fetchingWeather: false,
+        alerts: undefined
+      }
+    case ALERT_SUCCESS:
+      return {
+        ...state,
+        alerts: payload.response.features.map(f => f.properties.headline).join(' | ')
       }
     default:
       return state

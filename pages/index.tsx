@@ -1,7 +1,6 @@
 import { memo } from 'react'
 import { NextPage } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { Header } from 'components/molecules/Header'
 import { Footer } from 'components/molecules/Footer'
 import { Container } from 'components/atoms/Container'
 import { GlobalStyle } from 'styles'
@@ -17,7 +16,6 @@ export const App: NextPage<{}> = memo(() => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />
-      <Header />
       <Container>
         <Search />
         <Weather />

@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig } from 'axios'
 import queryString from 'query-string'
 
 export const NOAA_ENDPOINTS = {
-  points: 'points'
+  points: 'points',
+  alerts: 'alerts/active/zone'
 }
 export const GOOGLE_ENDPOINTS = {
   places: 'place/autocomplete/json',

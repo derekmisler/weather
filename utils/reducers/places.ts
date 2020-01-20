@@ -57,14 +57,16 @@ export const placesReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: payload.error,
-        fetchingLatLong: false
+        fetchingLatLong: false,
+        selection: {}
       }
       case RESET_PLACES:
       return {
         ...state,
         suggestions: [],
         fetchingPlaces: false,
-        fetchingLatLong: false
+        fetchingLatLong: false,
+        selection: {}
       }
     default:
       return state

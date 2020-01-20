@@ -13,9 +13,6 @@ export const geocode = () => next => async action => {
   }
 
   next(actionWith({ type: requestType, payload }))
-  console.log('--------------------')
-  console.log('payload.place', payload.place)
-  console.log('--------------------')
   const requestData = {
     endpoint: GOOGLE_ENDPOINTS.geocode,
     params: {

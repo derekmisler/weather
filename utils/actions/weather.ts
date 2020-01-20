@@ -13,6 +13,23 @@ export const WEATHER_ACTION_TYPES = keymirror({
   WEATHER_ERROR: null
 })
 
+export const ALERT_ACTION_TYPES = keymirror({
+  ALERT_REQUEST: null,
+  ALERT_SUCCESS: null,
+  ALERT_ERROR: null
+})
+
+export const getAlerts = zoneID => ({
+  payload: {
+    callApi: true,
+    requestData: {
+      endpoint: NOAA_ENDPOINTS.alerts,
+      group: zoneID
+    },
+    actionTypes: Object.keys(ALERT_ACTION_TYPES)
+  }
+})
+
 export const getStation = ({ lat, lng }) => ({
   payload: {
     callApi: true,

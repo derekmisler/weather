@@ -1,22 +1,21 @@
-import { memo } from 'react'
-import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { SFC, memo } from 'react'
 import { Animated } from 'components/molecules/Animated'
 import { Heading, Span, Error } from 'components/atoms/Typography'
-import { RootState } from 'utils/reducers'
+import { LAYOUT } from 'styles'
 
-export const Header = memo(() => {
-  const { error } = useSelector((state: RootState) => state.weather)
+const StyledHeader = styled.header`
+  margin-bottom: ${LAYOUT.spacing.large};
+`
 
+export const Header: SFC<{ title: string }> = memo(({ title }) => {
   return (
-    <header>
+    <StyledHeader>
       <Animated delay={100}>
         <Heading textAlign='center' level={1}>
-          { error
-            ? <Error>{error}</Error>
-            : <Span italic>Whatever the Weather</Span>
-          }
+          <Span italic>{title}</Span>
         </Heading>
       </Animated>
-    </header>
+    </StyledHeader>
   )
 })
