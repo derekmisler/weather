@@ -29,7 +29,8 @@ export const themes = {
     linkHover: blueDarkest,
     background: white,
     border: whiteDarkest,
-    shadow: transparentBlack
+    shadow: transparentBlack,
+    error: red
   },
   dayCloudy: {
     text: grayDarkest,
@@ -37,7 +38,8 @@ export const themes = {
     linkHover: blueDarkest,
     background: whiteDarkest,
     border: gray,
-    shadow: transparentBlack
+    shadow: transparentBlack,
+    error: red
   },
   nightClear: {
     text: white,
@@ -45,7 +47,8 @@ export const themes = {
     linkHover: blueDarker,
     background: black,
     border: whiteDarker,
-    shadow: transparentBlack
+    shadow: transparentBlack,
+    error: red
   },
   nightCloudy: {
     text: whiteDarker,
@@ -53,6 +56,7 @@ export const themes = {
     linkHover: blueDarker,
     background: grayDarkest,
     border: whiteDarkest,
-    shadow: transparentBlack
+    shadow: transparentBlack,
+    error: red
   }
 }

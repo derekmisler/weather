@@ -13,6 +13,7 @@ export const SELECT_PLACE_ACTION_TYPES = keymirror({
   SELECT_PLACE_ERROR: null
 })
 export const RESET_PLACES = 'RESET_PLACES'
+export const SET_CURRENT_PLACE = 'SET_CURRENT_PLACE'
 
 export const getPlaces = (text: string) => ({
   payload: {
@@ -34,6 +35,11 @@ export const selectPlace = place => ({
     place,
     actionTypes: Object.keys(SELECT_PLACE_ACTION_TYPES)
   }
+})
+
+export const currentPlace = location => ({
+  type: SET_CURRENT_PLACE,
+  payload: { location }
 })
 
 export const resetPlaces = () => ({

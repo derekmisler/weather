@@ -1,7 +1,7 @@
 import { RefObject, FormEvent, FC, useEffect, useRef, memo } from 'react'
 import styled from 'styled-components'
 import { Text, Span } from 'components/atoms/Typography'
-import { LAYOUT, DEFAULT_TEXT_STYLES, red, green } from 'styles'
+import { LAYOUT, BUTTON_TEXT_STYLES, red, green } from 'styles'
 
 const {
   borderSize,
@@ -24,8 +24,7 @@ const InputWrapper = styled.div`
 `
 
 const TextInput = styled.input<{ valid?: boolean, invalid?: boolean }>`
-  ${DEFAULT_TEXT_STYLES}
-  padding: ${spacing.small};
+  ${BUTTON_TEXT_STYLES}
   margin: 0;
   display: block;
   width: 100%;

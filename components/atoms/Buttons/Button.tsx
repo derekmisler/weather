@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { TYPOGRAPHY, LAYOUT, DEFAULT_TEXT_STYLES } from 'styles'
+import { TYPOGRAPHY, LAYOUT, BUTTON_TEXT_STYLES } from 'styles'
 
-const { buttonFontSize } = TYPOGRAPHY
+const { buttonFontSize, headingFontFamily } = TYPOGRAPHY
 
 const { spacing, borderRadius, borderStyle, borderSize, mediaQueries } = LAYOUT
 
@@ -13,17 +13,15 @@ interface StyledButtonProps {
 export const Button = styled.button.attrs<StyledButtonProps>(({ href }) => ({
   as: href ? 'a' : 'button'
 }))<StyledButtonProps>`
-  ${DEFAULT_TEXT_STYLES}
-  font-size: ${buttonFontSize.mobile};
-  display: inline-block;
-  color: ${({ theme }) => theme.link};
+  ${BUTTON_TEXT_STYLES}
   background-color: transparent;
   border: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
   text-decoration: none;
-  text-transform: uppercase;
-  padding: ${spacing.small} ${spacing.medium};
   border-radius: ${borderRadius};
-  width: fit-content;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &:hover,
   &:focus,
   &:active {
@@ -32,9 +30,5 @@ export const Button = styled.button.attrs<StyledButtonProps>(({ href }) => ({
     color: ${({ theme }) => theme.background};
     background-color: ${({ theme }) => theme.linkHover};
     border-color: ${({ theme }) => theme.linkHover};
-  }
-
-  @media ${mediaQueries.desktop} {
-    font-size: ${buttonFontSize.desktop};
   }
 `

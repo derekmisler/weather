@@ -17,7 +17,7 @@ export const generateResponsiveCols = (range: string | number = '') => {
     const [start, end] = (range as string).split('-')
     return css`
       grid-column-start: ${start};
-      grid-column-end: ${end};
+      grid-column-end: ${Number(end) + 1};
     `
   }
   if (range.includes('+')) {

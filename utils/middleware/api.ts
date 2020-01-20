@@ -17,11 +17,11 @@ export const api = () => next => async action => {
   }
 
   next(actionWith({ type: requestType, payload }))
-
+  const { requestData } = payload
   try {
-    const response = await callApi(payload.requestData)
-    return next(actionWith({ type: successType, payload: { response } }))
+    const response = await callApi(requestData)
+    return next(actionWith({ type: successType, payload: { response, requestData } }))
   } catch (error) {
-    return next(actionWith({ type: failureType, payload: { error } }))
+    return next(actionWith({ type: failureType, payload: { error, requestData } }))
   }
 }

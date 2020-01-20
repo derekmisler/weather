@@ -6,30 +6,24 @@ export const TYPOGRAPHY = {
   baseFontFamily: "'Lato', sans-serif;",
   headingFontFamily: "'Playfair Display', serif;",
   htmlFontSize: `${BASE_MEASURE}px`,
+  iconSize: '6rem',
   baseFontSize: {
-    desktop: '2rem',
-    mobile: '1.5rem'
+    mobile: '1.5rem',
+    desktop: '2rem'
   },
   smallFontSize: '.65em',
   buttonFontSize: {
-    desktop: '1.35rem',
-    mobile: '1rem'
+    mobile: '3rem',
+    desktop: '5rem'
   },
   baseLineHeight: 1.5,
   baseFontWeight: '400',
   boldFontWeight: '900',
   headingFontSizes: {
-    mobile: ['6rem', '3.75rem', '3rem', '2.125rem', '1.5rem', '1rem'],
-    desktop: ['9.75rem', '7.5rem', '5rem', '3rem', '2rem', '1.5rem']
+    mobile: ['5rem', '3.75rem', '3rem', '2.125rem', '1.5rem', '1rem'],
+    desktop: ['8rem', '6rem', '4.75rem', '3rem', '2rem', '1.5rem']
   },
-  headingLetterSpacing: [
-    '-.55rem',
-    '-.5rem',
-    '0',
-    '0',
-    '0',
-    '0'
-  ],
+  headingLetterSpacing: ['-.55rem', '-.5rem', '0', '0', '0', '0'],
   headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],
   headingFontWeights: new Array(6).fill('600')
 }
@@ -43,5 +37,20 @@ export const DEFAULT_TEXT_STYLES = css`
   text-align: left;
   @media ${LAYOUT.mediaQueries.desktop} {
     font-size: ${TYPOGRAPHY.baseFontSize.desktop};
+  }
+`
+
+export const BUTTON_TEXT_STYLES = css`
+  font: unset;
+  color: ${({ theme }) => theme.link};
+  font-family: ${TYPOGRAPHY.headingFontFamily};
+  font-size: ${TYPOGRAPHY.buttonFontSize.mobile};
+  line-height: ${TYPOGRAPHY.baseLineHeight};
+  font-weight: ${TYPOGRAPHY.baseFontWeight};
+  text-align: center;
+  font-style: italic;
+  padding: ${LAYOUT.spacing.small} ${LAYOUT.spacing.medium};
+  @media ${LAYOUT.mediaQueries.desktop} {
+    font-size: ${TYPOGRAPHY.buttonFontSize.desktop};
   }
 `

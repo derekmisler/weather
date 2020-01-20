@@ -1,12 +1,12 @@
-import { HTMLProps } from 'react'
 import styled from 'styled-components'
-import { DEFAULT_TEXT_STYLES } from 'styles'
+import { BUTTON_TEXT_STYLES } from 'styles'
 
-export const Link = styled.a<HTMLProps<HTMLLinkElement>>`
-  ${DEFAULT_TEXT_STYLES}
+export const Link = styled.a`
+  ${BUTTON_TEXT_STYLES}
   color: ${({ theme }) => theme.link};
   text-decoration: none;
-  font-style: italic;
+  display: flex;
+  align-items: center;
 
   &:hover,
   &:focus,

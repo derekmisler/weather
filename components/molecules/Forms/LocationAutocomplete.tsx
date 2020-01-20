@@ -26,32 +26,37 @@ const StyledResults = styled.div`
   top: 0;
   left: 0;
   right: 0;
+  z-index: 3;
+  padding: ${spacing.medium} ${spacing.large};
   border: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.border}`};
+  background-color: ${({ theme }) => theme.background};
   border-top: none;
   border-bottom-left-radius: ${borderRadius};
   border-bottom-right-radius: ${borderRadius};
   box-shadow: ${({ theme }) => `0 ${dropShadow.small} ${dropShadow.small} ${theme.shadow}`};
 `
-const StyledResultsItem = styled.div<{ last?: boolean }>`
-  padding: ${spacing.small} 0;
-  margin: 0 ${spacing.medium};
-  border-bottom: ${({ last, theme }) => last ? 'none' : `${borderSize} ${borderStyle} ${theme.border}`};
-  cursor: pointer;
+const StyledResultsItem = styled.div`
+  padding: ${spacing.small} ${spacing.large};
+  border-bottom: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.border}`};
+  text-align: center;
+  &:hover {
+    cursor: pointer;
+    color: ${({ theme }) => theme.linkHover};
+    border-bottom-color: ${({ theme }) => theme.link};
+  }
 `
 
-interface ItemProps extends SuggestionResultTypes {
-  last?: boolean
-}
+interface ItemProps extends SuggestionResultTypes {}
 
-const AutocompleteItem: FC<ItemProps> = memo(({ place, title, subtitle, last }) => {
+const AutocompleteItem: FC<ItemProps> = memo(({ place, title, subtitle }) => {
   const dispatch = useDispatch()
   const handleClick = () => {
     dispatch(selectPlace(place))
     dispatch(resetPlaces())
   }
   return (
-    <StyledResultsItem last={last} onClick={handleClick}>
-      <Text>
+    <StyledResultsItem onClick={handleClick}>
+      <Text textAlign='center'>
         <Span small bold>{title}</Span>
         { subtitle && <Span small italic> ({subtitle})</Span> }
       </Text>
@@ -62,7 +67,7 @@ const AutocompleteItem: FC<ItemProps> = memo(({ place, title, subtitle, last }) 
 export const LocationAutocomplete = memo(() => {
   const [inputValue, setInputValue] = useState('')
   const [suggestionsVisible, setSuggestionsVisible] = useState(false)
-  const { suggestions = [] } = useSelector((state: RootState) => state.places)
+  const { suggestions = [], selection } = useSelector((state: RootState) => state.places)
 
   const dispatch = useDispatch()
 
@@ -82,11 +87,10 @@ export const LocationAutocomplete = memo(() => {
       { suggestionsVisible && (
         <StyledAutocompleteWrapper>
           <StyledResults>
-          { suggestions.map((suggestion, i) => (
+          { suggestions.map(suggestion => (
             <AutocompleteItem
               {...suggestion}
               key={`${suggestion.title}-${suggestion.subtitle}`}
-              last={i === suggestions.length - 1}
             />
           ))}
           </StyledResults>

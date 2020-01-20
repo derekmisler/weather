@@ -4,3 +4,4 @@ export interface ActionTypes {
 }
 
 export * from './places'
+export * from './weather'

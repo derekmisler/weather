@@ -30,9 +30,13 @@ export const Animated: SFC<AnimatedProps> = memo(
   ({ active = true, delay = 0, ...rest }) => {
     const [animated, setAnimated] = useState(false)
     useEffect(() => {
-      setTimeout(() => {
-        setAnimated(active)
-      }, delay)
+      if (active) {
+        setTimeout(() => {
+          setAnimated(true)
+        }, delay)
+      } else {
+        setAnimated(false)
+      }
     }, [active])
 
     return <StyledAnimated {...rest} animated={animated} />

@@ -1,4 +1,4 @@
-import { PLACES_ACTION_TYPES, RESET_PLACES, SELECT_PLACE_ACTION_TYPES } from 'utils/actions'
+import { PLACES_ACTION_TYPES, RESET_PLACES, SELECT_PLACE_ACTION_TYPES, SET_CURRENT_PLACE } from 'utils/actions'
 import { parseSuggestions } from 'utils/parseSuggestions'
 
 interface PlacesState {
@@ -47,6 +47,7 @@ export const placesReducer = (state = defaultState, action) => {
         fetchingLatLong: true,
         selection: undefined
       }
+    case SET_CURRENT_PLACE:
     case SELECT_PLACE_SUCCESS:
       return {
         ...state,

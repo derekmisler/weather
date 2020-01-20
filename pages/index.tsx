@@ -8,6 +8,7 @@ import { GlobalStyle } from 'styles'
 import { useTheme } from 'utils/useTheme'
 import { resetPlaces } from 'utils/actions'
 import { Search } from 'components/organisms/Search'
+import { Weather } from 'components/organisms/Weather'
 
 export const config = { amp: false }
 
@@ -19,6 +20,7 @@ export const App: NextPage<{}> = memo(() => {
       <Header />
       <Container>
         <Search />
+        <Weather />
       </Container>
       <Footer />
     </ThemeProvider>

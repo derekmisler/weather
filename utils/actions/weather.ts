@@ -13,7 +13,7 @@ export const WEATHER_ACTION_TYPES = keymirror({
   WEATHER_ERROR: null
 })
 
-export const getStation = ({ lat, lng }: { lat: string, lng: string }) => ({
+export const getStation = ({ lat, lng }) => ({
   payload: {
     callApi: true,
     requestData: {
