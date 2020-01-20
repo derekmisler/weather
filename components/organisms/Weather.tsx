@@ -98,11 +98,7 @@ export const Weather = memo(() => {
       </Row>
       { activeTab === 'today' && (
         <>
-          <Row columnsDesktop={7} margin='large'>
-            <Col rangeDesktop='3-5'>
-              <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
-            </Col>
-          </Row>
+          <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
           <Row columns={3} columnsDesktop={12}>
             { forecastHourly.map((f, i) => (
               <HourlyForecast key={JSON.stringify(f)} maxHourlyTemp={maxHourlyTemp} forecast={f} active={activeTab === 'today'}  index={i}/>
