@@ -11,11 +11,11 @@ import { NextSeven } from 'components/molecules/NextSeven'
 import { Button } from 'components/atoms/Buttons'
 import { WEATHER_TABS } from 'constants/weather'
 
-const Tab: SFC<{ title: string, id: string, onClick: Function }> = memo(({ title, id, onClick }) => {
+const Tab: SFC<{ title: string, id: string, onClick: Function, activeTab: string }> = memo(({ title, id, onClick, activeTab }) => {
   const handleClick = () => {
     onClick(id)
   }
-  return <Col><Button tab onClick={handleClick}>{title}</Button></Col>
+  return <Col><Button tab disabled={activeTab === id} onClick={handleClick}>{title}</Button></Col>
 })
 
 export const Weather = memo(() => {
@@ -57,15 +57,19 @@ export const Weather = memo(() => {
   return (
     <>
       <Row columnsDesktop={2} padding='large' margin='large' gap='large'>
-        {WEATHER_TABS.map(tab => <Tab {...tab} key={tab.id} onClick={handleTabClick} />)}
+        {WEATHER_TABS.map(tab => <Tab {...tab} activeTab={activeTab} key={tab.id} onClick={handleTabClick} />)}
       </Row>
-      <Row>
-        <Col row>
-          <Text>{description}</Text>
-          { activeTab === 'today' && <DayForecast forecast={forecastToday} active={activeTab === 'today'} /> }
-          { activeTab === 'nextSeven' && <NextSeven active={activeTab === 'nextSeven'} /> }
-        </Col>
-      </Row>
+      <Text>{description}</Text>
+      { activeTab === 'today' && (
+        <Row columnsDesktop={7}>
+          <Col rangeDesktop='3-5'>
+            <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
+          </Col>
+        </Row>
+      )}
+      { activeTab === 'nextSeven' && (
+        <NextSeven active={activeTab === 'nextSeven'} />
+      )}
     </>
   )
 })

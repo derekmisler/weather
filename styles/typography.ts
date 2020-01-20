@@ -16,7 +16,7 @@ export const TYPOGRAPHY = {
     mobile: '3rem',
     desktop: '5rem'
   },
-  baseLineHeight: 1.5,
+  baseLineHeight: 1.2,
   baseFontWeight: '400',
   boldFontWeight: '900',
   headingFontSizes: {

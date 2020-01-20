@@ -10,7 +10,7 @@ export const NextSeven: SFC<{ active?: boolean }> = memo(({ active }) => {
   const nextSevenDays = forecastFuture.filter(f => f.isDaytime)
   const nextSevenNights = forecastFuture.filter(f => !f.isDaytime)
   return (
-    <Row columns={2} columnsDesktop={7}>
+    <Row columns={2} columnsDesktop={7} gap='small'>
       {
         [...nextSevenDays, ...nextSevenNights].map(f => (
           <Col key={f.detailedForecast}>

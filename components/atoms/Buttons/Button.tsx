@@ -32,13 +32,15 @@ export const Button = styled.button.attrs<StyledButtonProps>(({ href }) => ({
   display: flex;
   align-items: center;
   justify-content: center;
+  color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.link};
+  border-color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.link};
   &:hover,
   &:focus,
   &:active {
     outline: none;
-    cursor: pointer;
-    color: ${({ theme }) => theme.background};
-    background-color: ${({ theme }) => theme.linkHover};
-    border-color: ${({ theme }) => theme.linkHover};
+    cursor: ${({ disabled }) => disabled ? 'unset' : 'pointer'};
+    color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.background};
+    background-color: ${({ theme, disabled }) => disabled ? 'transparent' : theme.linkHover};
+    border-color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.linkHover};
   }
 `

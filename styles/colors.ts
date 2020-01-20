@@ -29,6 +29,7 @@ export const themes = {
     linkHover: blueDarkest,
     background: white,
     border: whiteDarkest,
+    disabled: gray,
     shadow: transparentBlack,
     error: red
   },
@@ -38,6 +39,7 @@ export const themes = {
     linkHover: blueDarkest,
     background: whiteDarkest,
     border: gray,
+    disabled: gray,
     shadow: transparentBlack,
     error: red
   },
@@ -47,6 +49,7 @@ export const themes = {
     linkHover: blueDarker,
     background: black,
     border: whiteDarker,
+    disabled: gray,
     shadow: transparentBlack,
     error: red
   },
@@ -56,6 +59,7 @@ export const themes = {
     linkHover: blueDarker,
     background: grayDarkest,
     border: whiteDarkest,
+    disabled: gray,
     shadow: transparentBlack,
     error: red
   }
