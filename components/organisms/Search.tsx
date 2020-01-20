@@ -1,3 +1,4 @@
+import styled from 'styled-components'
 import { useEffect, memo, useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
@@ -10,14 +11,17 @@ import { Animated } from 'components/molecules/Animated'
 import { Button } from 'components/atoms/Buttons'
 import NearMeRoundedIcon from '@material-ui/icons/NearMeRounded'
 
+const StyledSearchWrapper = styled.div`
+  position: absolute;
+`
+
 export const Search = memo(() => {
   const { selection } = useSelector((state: RootState) => state.places)
   const router = useRouter()
   const dispatch = useDispatch()
-  const searchOccured = !!(router.query && router.query.lat && router.query.lng)
 
   const [browserSupportsGeo, setBrowserSupportsGeo] = useState(false)
-  const [searchIsActive, setSearchIsActive] = useState(!searchOccured)
+  const [searchIsActive, setSearchIsActive] = useState(!(router.query && router.query.lat && router.query.lng))
 
   useEffect(() => {
     setBrowserSupportsGeo(!!(navigator && navigator.geolocation))
@@ -27,11 +31,12 @@ export const Search = memo(() => {
     if (selection && selection.lat && selection.lng) {
       router.push({ pathname: '/', query: selection })
       setSearchIsActive(false)
+      dispatch(resetPlaces())
     }
   }, [selection])
 
   useEffect(() => {
-    setSearchIsActive(!searchOccured)
+    setSearchIsActive(!(router.query && router.query.lat && router.query.lng))
   }, [router.query])
 
   const handleCurrentLocationClick = () => {
@@ -43,18 +48,20 @@ export const Search = memo(() => {
   }
 
   return (
-    <Animated delay={200} active={searchIsActive}>
-      <Row columnsDesktop={5}>
-        <Col rangeDesktop='2-4'>
-          <LocationAutocomplete />
-          { browserSupportsGeo && (
-            <>
-              <Text textAlign='center'><Span italic>or</Span></Text>
-              <Button onClick={handleCurrentLocationClick}>Use My Location</Button>
-            </>
-          )}
-        </Col>
-      </Row>
-    </Animated>
+    <StyledSearchWrapper>
+      <Animated delay={200} active={searchIsActive}>
+        <Row columnsDesktop={5}>
+          <Col rangeDesktop='2-4'>
+            <LocationAutocomplete />
+            { browserSupportsGeo && (
+              <>
+                <Text textAlign='center'><Span italic>or</Span></Text>
+                <Button onClick={handleCurrentLocationClick}>Use My Location</Button>
+              </>
+            )}
+          </Col>
+        </Row>
+      </Animated>
+    </StyledSearchWrapper>
   )
 })

@@ -20,10 +20,9 @@ export const TYPOGRAPHY = {
   baseFontWeight: '400',
   boldFontWeight: '900',
   headingFontSizes: {
-    mobile: ['5rem', '3.75rem', '3rem', '2.125rem', '1.5rem', '1rem'],
-    desktop: ['8rem', '6rem', '4.75rem', '3rem', '2rem', '1.5rem']
+    mobile: ['5rem', '4rem', '3rem', '2rem', '1.5rem', '1rem'],
+    desktop: ['7rem', '6rem', '5rem', '3rem', '2rem', '1.5rem']
   },
-  headingLetterSpacing: ['-.55rem', '-.5rem', '0', '0', '0', '0'],
   headingLineHeights: [1.2, 1.2, 1.2, 1.5, 1.5, 1.5],
   headingFontWeights: new Array(6).fill('600')
 }

@@ -5,14 +5,14 @@ interface PlacesState {
   fetchingWeather?: boolean
   error?: string
   properties: any
-  forecastNow: any
+  forecastToday: any
   forecastFuture: any[]
 }
 const defaultState = {
   fetchingWeatherProperties: false,
   fetchingWeather: false,
   properties: {},
-  forecastNow: {},
+  forecastToday: {},
   forecastFuture: [],
   error: undefined
 } as PlacesState
@@ -59,11 +59,11 @@ export const weatherReducer = (state = defaultState, action) => {
       const {
         response: { properties: { periods = [] } = {} } = {}
       } = payload
-      const [forecastNow] = periods
+      const [forecastToday] = periods
       periods.shift()
       return {
         ...state,
-        forecastNow,
+        forecastToday,
         forecastFuture: [...periods],
         fetchingWeather: false
       }

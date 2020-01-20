@@ -1,13 +1,18 @@
+import styled from 'styled-components'
 import { useEffect, memo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { RootState } from 'utils/reducers'
-import { Error } from 'components/atoms/Typography'
 import { LocationAutocomplete } from 'components/molecules/Forms'
 import { getStation, getWeather } from 'utils/actions'
+import { Today } from 'components/molecules/Today'
+
+const StyledWeatherWrapper = styled.div`
+  position: absolute;
+`
 
 export const Weather = memo(() => {
-  const { selection, properties, error } = useSelector((state: RootState) => state.weather)
+  const { selection, properties } = useSelector((state: RootState) => state.weather)
   const dispatch = useDispatch()
   const router = useRouter()
   const { lat, lng } = router.query
@@ -33,8 +38,8 @@ export const Weather = memo(() => {
   }, [router.query, properties])
 
   return (
-    <>
-      { error && <Error>{error}</Error> }
-    </>
+    <StyledWeatherWrapper>
+      <Today active={!!forecastID} />
+    </StyledWeatherWrapper>
   )
 })

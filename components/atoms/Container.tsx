@@ -10,6 +10,7 @@ const StyledContainer = styled.main`
   min-height: 100vh;
   max-width: 100%;
   overflow: hidden;
+  position: relative;
 `
 
 export const Container = memo(({ children }) => (

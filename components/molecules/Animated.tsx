@@ -37,6 +37,7 @@ export const Animated: SFC<AnimatedProps> = memo(
       } else {
         setAnimated(false)
       }
+      return () => setAnimated(false)
     }, [active])
 
     return <StyledAnimated {...rest} animated={animated} />
