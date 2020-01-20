@@ -23,44 +23,22 @@ export const blueDarker = '#81A1C1'
 export const blueDarkest = '#5E81AC'
 
 export const themes = {
-  dayClear: {
+  light: {
     text: black,
     link: blueDarker,
     linkHover: blueDarkest,
     background: white,
     border: whiteDarkest,
     disabled: gray,
-    shadow: transparentBlack,
-    error: red
+    shadow: transparentBlack
   },
-  dayCloudy: {
-    text: grayDarkest,
-    link: blueDarker,
-    linkHover: blueDarkest,
-    background: whiteDarkest,
-    border: gray,
-    disabled: gray,
-    shadow: transparentBlack,
-    error: red
-  },
-  nightClear: {
+  dark: {
     text: white,
     link: blue,
     linkHover: blueDarker,
     background: black,
     border: whiteDarker,
     disabled: gray,
-    shadow: transparentBlack,
-    error: red
-  },
-  nightCloudy: {
-    text: whiteDarker,
-    link: blue,
-    linkHover: blueDarker,
-    background: grayDarkest,
-    border: whiteDarkest,
-    disabled: gray,
-    shadow: transparentBlack,
-    error: red
+    shadow: transparentBlack
   }
 }

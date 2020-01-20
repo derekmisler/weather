@@ -1,12 +1,17 @@
 import styled from 'styled-components'
-import { BUTTON_TEXT_STYLES } from 'styles'
+import { DEFAULT_TEXT_STYLES, BUTTON_TEXT_STYLES } from 'styles'
 
-export const Link = styled.a`
-  ${BUTTON_TEXT_STYLES}
+export const Link = styled.a.attrs(({ href }) => ({
+  as: href ? 'a' : 'button'
+}))<{ small?: boolean }>`
+  ${({ small }) => small ? DEFAULT_TEXT_STYLES : BUTTON_TEXT_STYLES};
   color: ${({ theme }) => theme.link};
   text-decoration: none;
   display: flex;
   align-items: center;
+  background-color: transparent;
+  border: none;
+  font-style: italic;
 
   &:hover,
   &:focus,

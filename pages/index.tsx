@@ -1,7 +1,7 @@
 import { memo } from 'react'
 import { NextPage } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { Footer } from 'components/molecules/Footer'
+import { Favorites } from 'components/molecules/Favorites'
 import { Container } from 'components/atoms/Container'
 import { GlobalStyle } from 'styles'
 import { useTheme } from 'utils/useTheme'
@@ -20,7 +20,7 @@ export const App: NextPage<{}> = memo(() => {
         <Search />
         <Weather />
       </Container>
-      <Footer />
+      <Favorites />
     </ThemeProvider>
   )
 })

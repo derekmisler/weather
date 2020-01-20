@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { RootState } from 'utils/reducers'
 import { Row, Col } from 'components/atoms/Grid'
-import { Text, Alert } from 'components/atoms/Typography'
+import { Text, Alert, Span } from 'components/atoms/Typography'
 import { LocationAutocomplete } from 'components/molecules/Forms'
 import { getStation, getWeather, getAlerts } from 'utils/actions'
 import { DayForecast } from 'components/molecules/DayForecast'
@@ -12,6 +12,8 @@ import { NextSeven } from 'components/molecules/NextSeven'
 import { Button } from 'components/atoms/Buttons'
 import { WEATHER_TABS } from 'constants/weather'
 import { Header } from 'components/molecules/Header'
+import { Animated } from 'components/molecules/Animated'
+import { AddToFavorites } from 'components/molecules/AddToFavorites'
 
 const Tab: SFC<{ title: string, id: string, onClick: Function, activeTab: string }> = memo(({ title, id, onClick, activeTab }) => {
   const handleClick = () => {
@@ -81,9 +83,18 @@ export const Weather = memo(() => {
 
   return (
     <>
-      <Header title={description}/>
+      <Header title={description}>
+        <AddToFavorites favorite={{
+          title: description,
+          location: { lat: router.query.lat, lng: router.query.lng }
+        }} />
+      </Header>
       <Row columnsDesktop={2} padding='large' margin='large' gap='large'>
-        {WEATHER_TABS.map(tab => <Tab {...tab} activeTab={activeTab} key={tab.id} onClick={handleTabClick} />)}
+        {WEATHER_TABS.map(tab => (
+          <Animated key={tab.id}>
+            <Tab {...tab} activeTab={activeTab} onClick={handleTabClick} />
+          </Animated>
+        ))}
       </Row>
       { activeTab === 'today' && (
         <>

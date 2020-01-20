@@ -14,6 +14,8 @@ export const SELECT_PLACE_ACTION_TYPES = keymirror({
 })
 export const RESET_PLACES = 'RESET_PLACES'
 export const SET_CURRENT_PLACE = 'SET_CURRENT_PLACE'
+export const ADD_TO_FAVORITES = 'ADD_TO_FAVORITES'
+export const REMOVE_FROM_FAVORITES = 'REMOVE_FROM_FAVORITES'
 
 export const getPlaces = (text: string) => ({
   payload: {
@@ -44,4 +46,9 @@ export const currentPlace = location => ({
 
 export const resetPlaces = () => ({
   type: RESET_PLACES
+})
+
+export const addToFavorite = (selection, shouldAdd) => ({
+  type: shouldAdd ? ADD_TO_FAVORITES : REMOVE_FROM_FAVORITES,
+  payload: selection
 })

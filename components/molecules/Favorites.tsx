@@ -2,12 +2,12 @@ import { memo } from 'react'
 import styled from 'styled-components'
 import { Text } from 'components/atoms/Typography'
 
-const StyledFooter = styled.footer``
+const StyledFavorites = styled.div``
 
-export const Footer = memo(() => {
+export const Favorites = memo(() => {
   return (
-    <StyledFooter>
+    <StyledFavorites>
       <Text>Footer</Text>
-    </StyledFooter>
+    </StyledFavorites>
   )
 })

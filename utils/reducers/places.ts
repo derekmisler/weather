@@ -1,4 +1,4 @@
-import { PLACES_ACTION_TYPES, RESET_PLACES, SELECT_PLACE_ACTION_TYPES, SET_CURRENT_PLACE } from 'utils/actions'
+import { PLACES_ACTION_TYPES, RESET_PLACES, SELECT_PLACE_ACTION_TYPES, SET_CURRENT_PLACE, REMOVE_FROM_FAVORITES, ADD_TO_FAVORITES } from 'utils/actions'
 import { parseSuggestions } from 'utils/parseSuggestions'
 
 interface PlacesState {
@@ -6,6 +6,7 @@ interface PlacesState {
   fetchingLatLong?: boolean
   error?: string
   suggestions: any[]
+  favorites: any[]
   selection?: any
 }
 const defaultState = {
@@ -13,7 +14,8 @@ const defaultState = {
   fetchingLatLong: false,
   suggestions: [],
   selection: {},
-  error: undefined
+  error: undefined,
+  favorites: []
 } as PlacesState
 
 const { PLACES_REQUEST, PLACES_SUCCESS, PLACES_ERROR } = PLACES_ACTION_TYPES
@@ -60,7 +62,17 @@ export const placesReducer = (state = defaultState, action) => {
         fetchingLatLong: false,
         selection: {}
       }
-      case RESET_PLACES:
+    case ADD_TO_FAVORITES:
+      return {
+        ...state,
+        favorites: [payload, ...(state.favorites || [])]
+      }
+    case REMOVE_FROM_FAVORITES:
+      return {
+        ...state,
+        favorites: state.favorites.filter(f => f.name !== payload.name)
+      }
+    case RESET_PLACES:
       return {
         ...state,
         suggestions: [],
