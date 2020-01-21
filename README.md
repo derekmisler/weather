@@ -7,7 +7,7 @@ Just a little weather app. You can search for a location, or use your current lo
 ## Some notes:
 
 - Server-side rendering with [Next.js](https://nextjs.org/)
-- **90/99** score on [Lighthouse](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwhatever-the-weather.now.sh%2F&tab=desktop)
+- **99** score on [Lighthouse](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwhatever-the-weather.now.sh%2F&tab=desktop)
 - Styling courtesy of [Styled Components](https://styled-components.com/)
 - Font combination: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Lato](https://fonts.google.com/specimen/Lato)
 - Icons from [Material UI](https://material-ui.com/components/material-icons/)
