@@ -7,11 +7,19 @@ import { Row, Col } from 'components/atoms/Grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'utils/reducers'
 
-const { spacing, borderSize, borderStyle } = LAYOUT
+const { spacing, borderSize, borderStyle, dropShadow } = LAYOUT
 
-const StyledFavorites = styled.footer`
-  padding: ${spacing.large};
+const StyledFavorites = styled.div`
+  padding: ${spacing.small};
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: flex-start;
+  background-color: ${({ theme }) => theme.background};
   border-top: ${({ theme }) => `${borderSize} ${borderStyle} ${theme.link}`};
+  box-shadow: ${({ theme }) => `0 -${dropShadow.small} ${dropShadow.large} ${theme.shadow}`};
 `
 
 const Fave: SFC<{
@@ -26,27 +34,24 @@ const Fave: SFC<{
     onClick({ ...location })
   }
   return (
-    <Col>
-      <Link small onClick={handleClick}>{title}</Link>
-    </Col>
+    <Link small onClick={handleClick}>{title}</Link>
   )
 })
 
 export const Favorites = memo(() => {
   const router = useRouter()
-  const favorites = useSelector((state: RootState) => state.favorites) || []
-  if (!favorites.length) return <></>
+  const favorites = useSelector((state: RootState) => state.favorites) || {}
+  const favArray: any[] = Object.values(favorites).filter(Boolean)
+  const [first] = favArray
+  if (!first.id) return null
   const selectFave = ({ lat, lng }) => {
-    router.push({ pathname: '/', query: { lat, lng }})
+    router.replace({ pathname: '/', query: { lat, lng }})
   }
   return (
     <StyledFavorites>
-      <Heading level={4}>Favorites</Heading>
-      <Row columns={2} columnsDesktop={5}>
-        { favorites.map(fave => (
-          <Fave {...fave} key={fave.title} onClick={selectFave} />
-        ))}
-      </Row>
+      { favArray.map(fave => (
+        <Fave {...fave} key={JSON.stringify(fave)} onClick={selectFave} />
+      ))}
     </StyledFavorites>
   )
 })

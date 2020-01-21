@@ -33,7 +33,7 @@ export const HourlyForecast: SFC<{ forecast: any, active?: boolean, index: numbe
   if (temperature >= 90) color = red
   return (
       <Col>
-        <Animated delay={100 * index} active={active}>
+        <Animated delay={50 * index} active={active}>
           <Text textAlign='center'>
             <Span small>{moment(endTime).format('hA')}</Span>
           </Text>

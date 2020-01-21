@@ -9,10 +9,10 @@ import { Animated } from 'components/molecules/Animated'
 import { addToFavorite } from 'utils/actions'
 
 export const AddToFavorites: SFC<{ favorite: any }> = memo(({ favorite }) => {
-  const favorites = useSelector((state: RootState) => state.favorites) || []
+  const favorites = useSelector((state: RootState) => state.favorites) || {}
   const dispatch = useDispatch()
   const favoriteID = `${favorite.location.lat}-${favorite.location.lng}`
-  const isFavorite = favorites.find(f => f.id === favoriteID)
+  const isFavorite = !!favorites[favoriteID]
   const buttonText = isFavorite
   ? 'Remove from favorites'
   : 'Add to favorites'

@@ -4,12 +4,12 @@ export const gray = '#4c566a'
 export const grayDarker = '#434c5e'
 export const grayDarkest = '#3b4252'
 export const black = '#2e3440'
-export const transparentBlack = hexToRgba(gray, .5)
+export const transparentBlack = hexToRgba(gray, .2)
 
 export const white = '#ECEFF4'
 export const whiteDarker = '#E5E9F0'
 export const whiteDarkest = '#D8DEE9'
-export const transparentWhite = hexToRgba(whiteDarkest, .5)
+export const transparentWhite = hexToRgba(whiteDarkest, .2)
 
 export const red = '#BF616A'
 export const orange = '#D08770'
