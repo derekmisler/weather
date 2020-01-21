@@ -71,7 +71,7 @@ class MainApp extends App<AppProps> {
           />
         </Head>
         <Provider store={store}>
-          <PersistGate persistor={(store as any).__persistor} loading={<Header title='Whatever the Weather'/>}>
+          <PersistGate persistor={(store as any).__persistor} loading={<Header title='Checking for saved data...'/>}>
             <Component {...pageProps} />
           </PersistGate>
         </Provider>
