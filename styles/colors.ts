@@ -26,7 +26,7 @@ export const themes = {
   light: {
     text: black,
     link: blueDarker,
-    linkHover: blueDarkest,
+    linkHover: green,
     background: white,
     border: whiteDarkest,
     disabled: gray,
@@ -35,7 +35,7 @@ export const themes = {
   dark: {
     text: white,
     link: blue,
-    linkHover: blueDarker,
+    linkHover: purple,
     background: black,
     border: whiteDarker,
     disabled: gray,

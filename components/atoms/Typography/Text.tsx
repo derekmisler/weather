@@ -7,7 +7,6 @@ const { boldFontWeight } = TYPOGRAPHY
 
 export interface TextProps extends HTMLProps<HTMLParagraphElement> {
   bold?: boolean
-  italic?: boolean
   textAlign?: 'center' | 'right' | 'left'
 }
 
@@ -16,6 +15,5 @@ export const Text = styled.p.attrs<TextProps>(({ as }) => ({ as: as || 'p' }))<
 >`
   ${DEFAULT_TEXT_STYLES}
   text-align: ${({ textAlign }) => (textAlign ? textAlign : undefined)};
-  font-style: ${({ italic }) => (italic ? 'italic' : undefined)};
   font-weight: ${({ bold }) => (bold ? boldFontWeight : undefined)};
 `

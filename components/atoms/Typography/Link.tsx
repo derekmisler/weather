@@ -11,7 +11,6 @@ export const Link = styled.a.attrs(({ href }) => ({
   align-items: center;
   background-color: transparent;
   border: none;
-  font-style: italic;
 
   &:hover,
   &:focus,

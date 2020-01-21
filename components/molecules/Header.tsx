@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { SFC, memo } from 'react'
-import { Heading, Span } from 'components/atoms/Typography'
+import { Heading } from 'components/atoms/Typography'
 import { LAYOUT } from 'styles'
 
 const StyledHeader = styled.header`
@@ -11,7 +11,7 @@ export const Header: SFC<{ title: string, children?: any }> = memo(({ title, chi
   return (
     <StyledHeader>
       <Heading textAlign='center' level={1}>
-        <Span italic>{title}</Span>
+        {title}
       </Heading>
       {children}
     </StyledHeader>

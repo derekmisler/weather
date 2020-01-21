@@ -68,7 +68,7 @@ export const Input: FC<InputProps> = memo(({
   }, [])
   return (
     <InputWrapper>
-      { label && <Text as='label' htmlFor={id}><Span italic small>{label}</Span></Text> }
+      { label && <Text as='label' htmlFor={id}><Span small>{label}</Span></Text> }
       <TextInput placeholder={placeholder} ref={inputRef} id={id} type='text' defaultValue={defaultValue} onChange={handleChange} />
     </InputWrapper>
   )

@@ -67,7 +67,7 @@ export const Search = memo(() => {
             { browserSupportsGeo
             ? (
               <>
-                <Text textAlign='center'><Span italic>or</Span></Text>
+                <Text textAlign='center'>or</Text>
                 <Button onClick={handleCurrentLocationClick}>Use My Location</Button>
               </>
             ) : (

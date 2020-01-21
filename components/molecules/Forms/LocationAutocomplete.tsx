@@ -58,7 +58,7 @@ const AutocompleteItem: FC<ItemProps> = memo(({ place, title, subtitle }) => {
     <StyledResultsItem onClick={handleClick}>
       <Text textAlign='center'>
         <Span small bold>{title}</Span>
-        { subtitle && <Span small italic> ({subtitle})</Span> }
+        { subtitle && <Span small> ({subtitle})</Span> }
       </Text>
     </StyledResultsItem>
   )

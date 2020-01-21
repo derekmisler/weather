@@ -41,10 +41,10 @@ export const HourlyForecast: SFC<{ forecast: any, active?: boolean, index: numbe
             <TempBar color={color} height={temperature / maxHourlyTemp * 100} />
           </TempBarWrapper>
           <Text textAlign='center'>
-            <Span small>{temperature}&deg;{temperatureUnit}</Span>
+            <Span small bold>{temperature}&deg;{temperatureUnit}</Span>
           </Text>
           <Text textAlign='center'>
-            <Span small italic>{windSpeed} {windDirection}</Span>
+            <Span small>{windSpeed} {windDirection}</Span>
           </Text>
         </Animated>
       </Col>
