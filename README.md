@@ -10,6 +10,7 @@ Just a little weather app. You can search for a location, or use your current lo
 - **99** score on [Lighthouse](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwhatever-the-weather.now.sh%2F&tab=desktop)
 - Styling courtesy of [Styled Components](https://styled-components.com/)
 - Font combination: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Lato](https://fonts.google.com/specimen/Lato)
+- [Nord](https://www.nordtheme.com/) color scheme
 - Icons from [Material UI](https://material-ui.com/components/material-icons/)
 - Redux store persistance by [Redux Persist](https://github.com/rt2zz/redux-persist)
 - [Typescript](https://www.typescriptlang.org/), just because
