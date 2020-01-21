@@ -13,7 +13,8 @@ const composedMiddleware = composeWithDevTools({ trace: true, traceLimit: 30 })(
 export const configureStore = () => {
   const persistConfig = {
     key: 'root',
-    storage: new CookieStorage(Cookies)
+    storage: new CookieStorage(Cookies),
+    whitelist: ['favorites', 'weather', 'places']
   }
   const persistedReducer = persistReducer(persistConfig, rootReducer)
   const store: any = createStore(persistedReducer, undefined, composedMiddleware)

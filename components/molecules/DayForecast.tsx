@@ -1,8 +1,13 @@
-import { SFC, memo } from 'react'
+import { SFC, memo, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { Animated } from 'components/molecules/Animated'
 import { Heading, Span, Text } from 'components/atoms/Typography'
-import { Weather } from 'components/atoms/Icons'
 import { Row, Col } from 'components/atoms/Grid'
+import { useRouter } from 'next/router'
+import { Link } from 'components/atoms/Typography'
+import { Weather } from 'components/atoms/Icons'
+import { RootState } from 'utils/reducers'
+import { useTheme } from 'utils/useTheme'
 
 export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean }> = memo(({ active, forecast, small }) => {
   const {
@@ -16,17 +21,18 @@ export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean
     isDaytime
   } = forecast || {}
   return (
-    <Row columnsDesktop={12} margin='large' gap='large' vAlign='center'>
+    <Row margin='large' columnsDesktop={small ? 1 : 7}>
       <Col row>
         <Animated delay={200} active={active}>
           <Heading textAlign='center' level={small ? 5 : 2}>
             {name}
+            <br />
+            <Weather forecast={shortForecast} />
           </Heading>
         </Animated>
       </Col>
-      <Col rangeDesktop={5} textAlign='center'>
+      <Col rangeDesktop={small ? undefined : '3-5'}>
         <Animated delay={300} active={active}>
-          <Weather forecast={shortForecast} />
           {
             !small
             ? (
@@ -36,16 +42,14 @@ export const DayForecast: SFC<{ active?: boolean, forecast: any, small?: boolean
             )
           }
         </Animated>
-      </Col>
-      <Col rangeDesktop={7}>
         <Animated delay={500} active={active}>
-          <Heading level={small ? 5 : 4}>
-            {temperature}&deg;{temperatureUnit}{temperatureTrend && ` and ${temperatureTrend}`}
+          <Heading textAlign='center' level={small ? 5 : 4}>
+            {temperature}&deg; {temperatureUnit}{temperatureTrend && ` and ${temperatureTrend}`}
           </Heading>
         </Animated>
         { !small && (
           <Animated delay={600} active={active}>
-            <Text>{detailedForecast}</Text>
+            <Text textAlign='center'>{detailedForecast}</Text>
           </Animated>
         )}
       </Col>

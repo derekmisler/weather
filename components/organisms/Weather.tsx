@@ -40,7 +40,7 @@ export const Weather = memo(() => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { relativeLocation: { properties: { city = '', state = '' } = {} } = {} } = weatherProperties || {}
-  const description = !!city && !!state ? `${city}, ${state}` : ''
+  const description = !!(city && state) ? `${city}, ${state}` : ''
   const zoneID = (weatherProperties?.forecastZone || '').split('/').slice(-1)[0]
   const maxHourlyTemp = forecastHourly.map(h => Number(h.temperature)).sort((a, b) => b - a)[0]
 
