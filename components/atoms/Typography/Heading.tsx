@@ -21,6 +21,7 @@ export const Heading = styled.div.attrs<StyledHeadingProps>(({ level }) => ({
   as: `h${level}`
 }))<StyledHeadingProps>`
   font-family: ${headingFontFamily};
+  font-style: italic;
   text-align: ${({ textAlign = 'left' }) => textAlign};
   font-weight: ${({ level }) => headingFontWeights[level - 1]};
   line-height: ${({ level }) => headingLineHeights[level - 1]};

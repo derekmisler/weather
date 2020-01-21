@@ -1,7 +1,7 @@
 import React from 'react'
 import { NextPage, NextPageContext } from 'next'
 import { ThemeProvider } from 'styled-components'
-import { Heading } from 'components/atoms/Typography'
+import { Header } from 'components/molecules/Header'
 import { GlobalStyle } from 'styles'
 import { useTheme } from 'utils/useTheme'
 
@@ -16,11 +16,7 @@ const Error: NextPage<ErrorProps> = ({ statusCode }) => {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle theme={theme} />
-      {statusCode ? (
-        <Heading level={1}>{statusCode}</Heading>
-      ) : (
-        <Heading level={1}>This page doesn't exist!</Heading>
-      )}
+      <Header title={statusCode || 'This page doesn\'t exist!'} />
     </ThemeProvider>
   )
 }

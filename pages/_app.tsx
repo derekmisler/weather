@@ -9,7 +9,7 @@ import { PersistGate } from 'redux-persist/integration/react'
 import { meta } from 'constants/meta'
 import { configureStore } from 'utils/configureStore'
 import { GlobalStyle } from 'styles'
-import { Heading, Span } from 'components/atoms/Typography'
+import { Header } from 'components/molecules/Header'
 
 interface AppProps {
   store: Store
@@ -66,12 +66,12 @@ class MainApp extends App<AppProps> {
           <meta name='theme-color' content='#ffffff' />
           <link rel='shortcut icon' href='favicon.ico' />
           <link
-            href='https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600,600i&display=swap'
+            href='https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600i&display=swap'
             rel='stylesheet'
           />
         </Head>
         <Provider store={store}>
-          <PersistGate persistor={(store as any).__persistor} loading={<Heading level={3}><Span italic>Loading...</Span></Heading>}>
+          <PersistGate persistor={(store as any).__persistor} loading={<Header title='Whatever the Weather'/>}>
             <Component {...pageProps} />
           </PersistGate>
         </Provider>

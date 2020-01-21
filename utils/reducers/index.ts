@@ -17,12 +17,10 @@ const createConfig = (key = '') => ({
   storage: new CookieStorage(Cookies)
 })
 
-const placesPersistConfig = createConfig('places')
-const weatherPersistConfig = createConfig('places')
 const favoritesPersistConfig = createConfig('favorites')
 
 export const rootReducer = combineReducers({
-  places: persistReducer(placesPersistConfig, placesReducer),
-  weather: persistReducer(weatherPersistConfig, weatherReducer),
+  places: placesReducer,
+  weather: weatherReducer,
   favorites: persistReducer(favoritesPersistConfig, favoritesReducer as any)
 })
