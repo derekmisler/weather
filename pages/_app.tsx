@@ -66,7 +66,7 @@ class MainApp extends App<AppProps> {
           <meta name='theme-color' content='#ffffff' />
           <link rel='shortcut icon' href='favicon.ico' />
           <link
-            href='https://fonts.googleapis.com/css?family=Lato:400,400i,900|Playfair+Display:600i&display=swap'
+            href='https://fonts.googleapis.com/css?family=Lato:400,900|Playfair+Display:600i&display=swap'
             rel='stylesheet'
           />
         </Head>
