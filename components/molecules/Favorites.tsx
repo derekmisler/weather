@@ -6,6 +6,7 @@ import { LAYOUT } from 'styles'
 import { Row, Col } from 'components/atoms/Grid'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'utils/reducers'
+import { selectPlace } from 'utils/actions'
 
 const { spacing, borderSize, borderStyle, dropShadow } = LAYOUT
 
@@ -30,7 +31,9 @@ const Fave: SFC<{
     lng: string
   }
 }> = memo(({ location, title, onClick }) => {
+  const dispatch = useDispatch()
   const handleClick = () => {
+    dispatch(selectPlace({ description: title }))
     onClick({ ...location })
   }
   return (

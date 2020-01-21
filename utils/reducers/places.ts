@@ -44,7 +44,7 @@ export const placesReducer = (state = defaultState, action) => {
     case SELECT_PLACE_REQUEST:
       return {
         ...state,
-        fetchingLatLong: true,
+        fetchingLatLong: true
       }
     case SET_CURRENT_PLACE:
     case SELECT_PLACE_SUCCESS:
@@ -58,7 +58,10 @@ export const placesReducer = (state = defaultState, action) => {
         ...state,
         error: payload.error,
         fetchingLatLong: false,
-        selection: {}
+        selection: {
+          ...state.selection,
+          location: {}
+        }
       }
     case RESET_PLACES:
       return {
@@ -66,7 +69,10 @@ export const placesReducer = (state = defaultState, action) => {
         suggestions: [],
         fetchingPlaces: false,
         fetchingLatLong: false,
-        selection: {}
+        selection: {
+          ...state.selection,
+          location: {}
+        }
       }
     default:
       return state

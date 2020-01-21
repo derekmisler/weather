@@ -29,7 +29,7 @@ export const getPlaces = (text: string) => ({
   }
 })
 
-export const selectPlace = place => ({
+export const selectPlace = (place?: any) => ({
   payload: {
     geocode: true,
     place,

@@ -24,13 +24,13 @@ const Tab: SFC<{ title: string, id: string, onClick: Function, activeTab: string
 
 export const Weather = memo(() => {
   const {
-    selection,
     properties,
     forecastToday,
     forecastHourly = [],
     alerts
   } = useSelector((state: RootState) => state.weather)
-  const { location } = selection || {}
+  const { selection } = useSelector((state: RootState) => state.places)
+  const { location, description } = selection || {}
   const [weatherProperties, setWeatherProperties] = useState({
     relativeLocation: { properties: { city: '', state: '' } },
     forecastZone: ''
@@ -40,7 +40,7 @@ export const Weather = memo(() => {
   const dispatch = useDispatch()
   const router = useRouter()
   const { relativeLocation: { properties: { city = '', state = '' } = {} } = {} } = weatherProperties || {}
-  const description = !!(city && state) ? `${city}, ${state}` : ''
+  const title = !!description ? description : `${city}, ${state}`
   const zoneID = (weatherProperties?.forecastZone || '').split('/').slice(-1)[0]
   const maxHourlyTemp = forecastHourly.map(h => Number(h.temperature)).sort((a, b) => b - a)[0]
 
@@ -49,7 +49,6 @@ export const Weather = memo(() => {
       router.replace({ pathname: '/', query: location })
     }
   }, [location])
-
 
   useEffect(() => {
     if (zoneID) dispatch(getAlerts(zoneID))
@@ -83,9 +82,9 @@ export const Weather = memo(() => {
 
   return (
     <>
-      <Header title={description}>
+      <Header title={title}>
         <AddToFavorites favorite={{
-          title: description,
+          title,
           location: { lat: router.query.lat, lng: router.query.lng }
         }} />
       </Header>
@@ -99,7 +98,7 @@ export const Weather = memo(() => {
       { activeTab === 'today' && (
         <>
           <DayForecast forecast={forecastToday} active={activeTab === 'today'} />
-          <Row columns={3} columnsDesktop={12}>
+          <Row columns={4} columnsDesktop={12}>
             { forecastHourly.map((f, i) => (
               <HourlyForecast key={JSON.stringify(f)} maxHourlyTemp={maxHourlyTemp} forecast={f} active={activeTab === 'today'}  index={i}/>
             ))}

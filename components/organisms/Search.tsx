@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import { Row, Col } from 'components/atoms/Grid'
 import { Header } from 'components/molecules/Header'
-import { Heading, Text, Span, Link } from 'components/atoms/Typography'
+import { Heading, Text, Span, Link, Alert } from 'components/atoms/Typography'
 import { RootState } from 'utils/reducers'
 import { LocationAutocomplete } from 'components/molecules/Forms'
 import { resetPlaces, currentPlace } from 'utils/actions'
@@ -30,7 +30,12 @@ export const Search = memo(() => {
   }, [searchIsActive])
 
   useEffect(() => {
-    setBrowserSupportsGeo(!!(navigator && navigator.geolocation))
+    setBrowserSupportsGeo(
+      navigator
+      && navigator.geolocation
+      && typeof window.orientation === 'undefined'
+      && navigator.userAgent.indexOf('IEMobile') === -1
+    )
   }, [navigator])
 
   useEffect(() => {
@@ -48,7 +53,7 @@ export const Search = memo(() => {
     if (browserSupportsGeo) {
       navigator.geolocation.getCurrentPosition(({ coords }) => {
         dispatch(currentPlace({ lat: coords.latitude, lng: coords.longitude }))
-      })
+      }, () => setBrowserSupportsGeo(false))
     }
   }
   if (!searchIsActive) return null
@@ -59,11 +64,14 @@ export const Search = memo(() => {
         <Row columnsDesktop={5}>
           <Col rangeDesktop='2-4'>
             <LocationAutocomplete />
-            { browserSupportsGeo && (
+            { browserSupportsGeo
+            ? (
               <>
                 <Text textAlign='center'><Span italic>or</Span></Text>
                 <Button onClick={handleCurrentLocationClick}>Use My Location</Button>
               </>
+            ) : (
+              <Alert>This device doesn't support geolocation. Bummer. Use the search instead.</Alert>
             )}
           </Col>
         </Row>
