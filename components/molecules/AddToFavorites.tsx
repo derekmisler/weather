@@ -11,7 +11,7 @@ import { addToFavorite } from 'utils/actions'
 export const AddToFavorites: SFC<{ favorite: any }> = memo(({ favorite }) => {
   const favorites = useSelector((state: RootState) => state.favorites) || {}
   const dispatch = useDispatch()
-  const favoriteID = `${favorite.location.lat}-${favorite.location.lng}`
+  const favoriteID = favorite.title.replace(/[^\w]/g, '-').toLowerCase()
   const isFavorite = !!favorites[favoriteID]
   const buttonText = isFavorite
   ? 'Remove from favorites'
