@@ -14,4 +14,5 @@ Just a little weather app. You can search for a location, or use your current lo
 - [Typescript](https://www.typescriptlang.org/), just because.
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk) for middleware
 - Deployments by [ZEIT Now](https://zeit.co/docs)
+- 90/99 score on [Lighthouse](https://developers.google.com/speed/pagespeed/insights/?url=https%3A%2F%2Fwhatever-the-weather.now.sh%2F&tab=desktop)
 - And a bunch of [other stuff](https://github.com/derekmisler/weather/blob/master/package.json#L20)!
