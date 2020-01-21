@@ -11,6 +11,7 @@ Just a little weather app. You can search for a location, or use your current lo
 - Font combination: [Playfair Display](https://fonts.google.com/specimen/Playfair+Display) and [Lato](https://fonts.google.com/specimen/Lato)
 - Icons from [Material UI](https://material-ui.com/components/material-icons/)
 - Redux store persistance by [Redux Persist](https://github.com/rt2zz/redux-persist)
+- [Typescript](https://www.typescriptlang.org/), just because.
 - [Redux Thunk](https://github.com/reduxjs/redux-thunk) for middleware
 - Deployments by [ZEIT Now](https://zeit.co/docs)
 - And a bunch of [other stuff](https://github.com/derekmisler/weather/blob/master/package.json#L20)!
