@@ -53,7 +53,7 @@ export const weatherReducer = (state = defaultState, action) => {
     case STATION_ERROR:
       return {
         ...state,
-        error: payload.error,
+        error: payload.error.message,
         fetchingWeatherProperties: false
       }
     case WEATHER_REQUEST:

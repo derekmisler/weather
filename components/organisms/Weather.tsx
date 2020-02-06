@@ -3,8 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useRouter } from 'next/router'
 import { RootState } from 'utils/reducers'
 import { Row, Col } from 'components/atoms/Grid'
-import { Text, Alert, Span } from 'components/atoms/Typography'
-import { LocationAutocomplete } from 'components/molecules/Forms'
+import { Heading, Alert } from 'components/atoms/Typography'
 import { getStation, getWeather, getAlerts } from 'utils/actions'
 import { DayForecast } from 'components/molecules/DayForecast'
 import { HourlyForecast } from 'components/molecules/HourlyForecast'
@@ -27,7 +26,9 @@ export const Weather = memo(() => {
     properties,
     forecastToday,
     forecastHourly = [],
-    alerts
+    alerts,
+    error,
+    fetchingWeatherProperties
   } = useSelector((state: RootState) => state.weather)
   const { selection } = useSelector((state: RootState) => state.places)
   const { location, description } = selection || {}
@@ -84,12 +85,22 @@ export const Weather = memo(() => {
 
   return (
     <>
-      <Header title={title}>
-        <AddToFavorites favorite={{
-          title,
-          location: { lat: router.query.lat, lng: router.query.lng }
-        }} />
-      </Header>
+      { fetchingWeatherProperties
+        ? <Heading level={2} textAlign='center'>Loading data...</Heading>
+        : (
+          <Header title={title}>
+            {error 
+              ? <Alert>{error}</Alert>
+              : (
+                <AddToFavorites favorite={{
+                  title,
+                  location: { lat: router.query.lat, lng: router.query.lng }
+                }} />
+              )
+            }
+          </Header>
+        )
+      }
       <Row columnsDesktop={3} padding='large' margin='large' gap='large'>
         {WEATHER_TABS.map(({ title, id, disabled }) => {
           const realTitle = title(!!(shouldShowAlerts && alerts.length))
@@ -115,11 +126,7 @@ export const Weather = memo(() => {
         <NextSeven active={activeTab === 'nextSeven'} />
       )}
       { activeTab === 'alerts' && shouldShowAlerts && (
-        <Alert>{alerts.map(a => (
-          <>
-            <Text>{a}</Text>
-          </>
-        ))}</Alert>
+        alerts.map(a => <Alert>{a}</Alert>)
       )}
     </>
   )
