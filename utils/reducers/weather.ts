@@ -3,7 +3,7 @@ import { STATION_ACTION_TYPES, WEATHER_ACTION_TYPES, ALERT_ACTION_TYPES } from '
 interface PlacesState {
   fetchingWeatherProperties?: boolean
   fetchingWeather?: boolean
-  alerts?: boolean
+  alerts?: string[]
   error?: string
   properties: any
   forecastToday: any
@@ -32,8 +32,7 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: undefined,
-        fetchingWeatherProperties: true,
-        alerts: undefined
+        fetchingWeatherProperties: true
       }
     case STATION_SUCCESS: {
       const {
@@ -55,15 +54,13 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: payload.error,
-        fetchingWeatherProperties: false,
-        alerts: undefined
+        fetchingWeatherProperties: false
       }
     case WEATHER_REQUEST:
       return {
         ...state,
         error: undefined,
-        fetchingWeather: true,
-        alerts: undefined
+        fetchingWeather: true
       }
     case WEATHER_SUCCESS: {
       const {
@@ -86,10 +83,10 @@ export const weatherReducer = (state = defaultState, action) => {
       return {
         ...state,
         error: `Oh no, something went wrong! Just start over. It's really all you can do.`,
-        fetchingWeather: false,
-        alerts: undefined
+        fetchingWeather: false
       }
     case ALERT_SUCCESS:
+      console.log('alerts', payload.response.features)
       return {
         ...state,
         alerts: payload.response.features.map(f => f.properties.headline).join(' | ')

@@ -9,6 +9,7 @@ interface StyledButtonProps {
   accent?: boolean
   href?: string
   tab?: boolean
+  selected?: boolean
 }
 
 const tabStyle = css`
@@ -32,8 +33,16 @@ export const Button = styled.button.attrs<StyledButtonProps>(({ href }) => ({
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.link};
-  border-color: ${({ theme, disabled }) => disabled ? theme.disabled : theme.link};
+  color: ${({ theme, disabled, selected }) => {
+    if (disabled) return theme.disabled
+    if (selected) return theme.active
+    return theme.link
+  }};
+  border-color: ${({ theme, disabled, selected }) => {
+    if (disabled) return theme.disabled
+    if (selected) return theme.active
+    return theme.link
+  }};
   &:hover,
   &:focus,
   &:active {

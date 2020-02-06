@@ -25,16 +25,18 @@ export const blueDarkest = '#5E81AC'
 export const themes = {
   light: {
     text: black,
+    active: green,
     link: blueDarker,
     linkHover: green,
     background: white,
     border: whiteDarkest,
-    disabled: gray,
+    disabled: whiteDarkest,
     shadow: transparentBlack
   },
   dark: {
     text: white,
     link: blue,
+    active: purple,
     linkHover: purple,
     background: black,
     border: whiteDarker,

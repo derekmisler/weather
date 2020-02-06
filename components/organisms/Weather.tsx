@@ -15,11 +15,11 @@ import { Header } from 'components/molecules/Header'
 import { Animated } from 'components/molecules/Animated'
 import { AddToFavorites } from 'components/molecules/AddToFavorites'
 
-const Tab: SFC<{ title: string, id: string, onClick: Function, activeTab: string }> = memo(({ title, id, onClick, activeTab }) => {
+const Tab: SFC<{ title: string, id: string, disabled: boolean, onClick: Function, activeTab: string }> = memo(({ title, id, disabled, onClick, activeTab }) => {
   const handleClick = () => {
-    onClick(id)
+    !disabled && onClick(id)
   }
-  return <Col><Button tab disabled={activeTab === id} onClick={handleClick}>{title}</Button></Col>
+  return <Col><Button tab disabled={disabled} selected={activeTab === id} onClick={handleClick}>{title}</Button></Col>
 })
 
 export const Weather = memo(() => {
@@ -78,6 +78,8 @@ export const Weather = memo(() => {
     setActiveTab(tabId)
   }
 
+  const shouldShowAlerts = alerts && alerts.length > 0
+
   if (!weatherIsActive) return null
 
   return (
@@ -88,12 +90,16 @@ export const Weather = memo(() => {
           location: { lat: router.query.lat, lng: router.query.lng }
         }} />
       </Header>
-      <Row columnsDesktop={2} padding='large' margin='large' gap='large'>
-        {WEATHER_TABS.map(tab => (
-          <Animated key={tab.id}>
-            <Tab {...tab} activeTab={activeTab} onClick={handleTabClick} />
-          </Animated>
-        ))}
+      <Row columnsDesktop={3} padding='large' margin='large' gap='large'>
+        {WEATHER_TABS.map(({ title, id, disabled }) => {
+          const realTitle = title(!!(shouldShowAlerts && alerts.length))
+          const realDisabled = disabled(!shouldShowAlerts)
+          return (
+            <Animated key={id}>
+              <Tab disabled={realDisabled} id={id} title={realTitle} activeTab={activeTab} onClick={handleTabClick} />
+            </Animated>
+          )
+        })}
       </Row>
       { activeTab === 'today' && (
         <>
@@ -108,7 +114,13 @@ export const Weather = memo(() => {
       { activeTab === 'nextSeven' && (
         <NextSeven active={activeTab === 'nextSeven'} />
       )}
-      { alerts && <Alert>{alerts}</Alert>}
+      { activeTab === 'alerts' && shouldShowAlerts && (
+        <Alert>{alerts.map(a => (
+          <>
+            <Text>{a}</Text>
+          </>
+        ))}</Alert>
+      )}
     </>
   )
 })
