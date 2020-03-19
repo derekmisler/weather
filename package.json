@@ -1,5 +1,5 @@
 {
-  "name": "whatever-the-weather",
+  "name": "@derekmisler/whatever-the-weather",
   "description": "Whether the weather be fine,\nOr whether the weather be not,\nWhether the weather be cold,\nOr whether the weather be hot,\nWe'll weather the weather\nWhatever the weather,\nWhether we like it or not.",
   "repository": {
     "type": "git",
