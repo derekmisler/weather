@@ -24,7 +24,7 @@
     "js-cookie": "^2.2.1",
     "keymirror": "^0.1.1",
     "lodash": "^4.17.15",
-    "moment-timezone": "^0.5.27",
+    "moment-timezone": "^0.5.35",
     "next": "^9.1.6",
     "next-redux-wrapper": "^4.0.1",
     "query-string": "^6.10.1",
